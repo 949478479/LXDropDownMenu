@@ -39,7 +39,7 @@
 - (NSArray<NSArray<NSString *> *> *)items
 {
     if (!_items) {
-        _items = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data.plist" ofType:nil]];
+        _items = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuItems.plist" ofType:nil]];
     }
     return _items;
 }
