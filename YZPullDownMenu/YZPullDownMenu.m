@@ -7,33 +7,107 @@
 
 #import "LXUtilities.h"
 #import "YZPullDownMenu.h"
-#import "YZPullDownMenuTableView.h"
 
+#pragma mark - __YZPullDownMenuBarSeparatorView -
 
 @interface __YZPullDownMenuBarSeparatorView : UIView
 @end
 @implementation __YZPullDownMenuBarSeparatorView
 @end
 
+#pragma mark - __YZPullDownMenuWrapperView -
 
 @interface __YZPullDownMenuWrapperView : UIView
 @end
 @implementation __YZPullDownMenuWrapperView
 @end
 
+#pragma mark - __YZPullDownMenuBackgroundView -
 
 @interface __YZPullDownMenuBackgroundView : UIView
 @end
 @implementation __YZPullDownMenuBackgroundView
 @end
 
+#pragma mark - __YZPullDownMenuTableView -
 
-@interface YZPullDownMenu ()
+@interface __YZPullDownMenuTableView : UITableView
+@end
+@implementation __YZPullDownMenuTableView
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    // 触摸点位于菜单表视图的内容范围内则让菜单表视图处理
+    CGRect contentRect = self.bounds;
+    contentRect.size.height = MIN(self.contentSize.height, contentRect.size.height);
+    if (CGRectContainsPoint(contentRect, point)) {
+        return self;
+    }
+    return nil;
+}
+
+@end
+
+#pragma mark - __YZPullDownMenuBarButton -
+
+@interface __YZPullDownMenuBarButton : UIButton
+@end
+@implementation __YZPullDownMenuBarButton
+
+- (CGRect)titleRectForContentRect:(CGRect)contentRect
+{
+    // image.width + title.width == button.width 即 contentRect.width 减去两侧间距
+    // image.originX + image.width == title.originX
+    // image 和 title 与 button 的间距相同，二者相邻且居中
+    CGRect titleRect = [super titleRectForContentRect:contentRect];
+
+    // margin 为 title 与 button 右侧的间距
+    CGFloat margin = contentRect.size.width - (titleRect.origin.x + titleRect.size.width);
+
+    // x 坐标为 margin 的位置是 title 与 button 左侧间距为 margin 的位置，然后进一步左移 2 点
+    titleRect.origin.x = margin - 2;
+
+    return titleRect;
+}
+
+- (CGRect)imageRectForContentRect:(CGRect)contentRect
+{
+    CGRect imageRect = [super imageRectForContentRect:contentRect];
+
+    // margin 为 image 与 button 左侧的间距
+    CGFloat margin = imageRect.origin.x;
+
+    // x 坐标为 CGRectGetMaxX(contentRect) - margin 的位置是 image 与 button 右侧间距为 margin 的位置
+    // 再减去 image 宽度即是原点 x 坐标,然后进一步右移 2 点，这样 title 和 image 之间就有 4 点间距了，比较合适
+    imageRect.origin.x = CGRectGetMaxX(contentRect) - margin - CGRectGetWidth(imageRect) + 2;
+
+    return imageRect;
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state
+{
+    [super setTitle:title forState:state];
+
+    [self sizeToFit]; // 设置完 title 后调整尺寸
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    // 去除高亮效果
+}
+
+@end
+
+#pragma mark - YZPullDownMenu -
+
+@interface YZPullDownMenu () <UITableViewDataSource, UITableViewDelegate>
 
 /// 菜单是否打开
 @property (nonatomic, readwrite) BOOL isOpen;
 /// 当前打开的菜单的索引
 @property (nonatomic, readwrite) NSUInteger currentMenuIndex;
+/// 菜单内容
+@property (nonatomic, copy) NSArray<NSString *> *menuItems;
 
 /// 菜单栏按钮
 @property (nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *menuBarButtons;
@@ -42,7 +116,9 @@
 /// 菜单容器视图
 @property (nonatomic) IBOutlet __YZPullDownMenuWrapperView *menuWrapperView;
 /// 菜单表视图
-@property (nonatomic) IBOutlet YZPullDownMenuTableView *menuTableView;
+@property (nonatomic) IBOutlet __YZPullDownMenuTableView *menuTableView;
+/// 菜单表视图高度约束
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *menuTableViewHeightConstraint;
 
 @end
 
@@ -86,13 +162,21 @@
     _rowHeight = rowHeight;
 
     self.menuTableView.rowHeight = rowHeight;
+    self.menuTableViewHeightConstraint.constant = rowHeight * MIN(self.menuItems.count, self.maxVisibleRows);
 }
 
 - (void)setMaxVisibleRows:(NSUInteger)maxVisibleRows
 {
     _maxVisibleRows = maxVisibleRows;
 
-    self.menuTableView.maxVisibleRows = maxVisibleRows;
+    self.menuTableViewHeightConstraint.constant = self.rowHeight * MIN(self.menuItems.count, self.maxVisibleRows);
+}
+
+- (void)setMenuItems:(NSArray<NSString *> *)menuItems
+{
+    _menuItems = menuItems.copy;
+
+    self.menuTableViewHeightConstraint.constant = self.rowHeight * MIN(self.menuItems.count, self.maxVisibleRows);
 }
 
 - (void)setButtonTextFont:(UIFont *)buttonTextFont
@@ -104,20 +188,12 @@
     }
 }
 
-- (void)setItemTextFont:(UIFont *)itemTextFont
-{
-    _itemTextFont = itemTextFont;
-
-    self.menuTableView.textFont = itemTextFont;
-}
-
 - (void)setNormalColor:(UIColor *)normalColor
 {
     _normalColor = normalColor;
 
     // 让所有菜单栏按钮标题和图片显示普通状态的颜色
     self.tintColor = normalColor;
-    self.menuTableView.normalTextColor = normalColor;
     [self.menuBarButtons makeObjectsPerformSelector:@selector(setLx_normalTitleColor:)
                                          withObject:normalColor];
 }
@@ -126,16 +202,8 @@
 {
     _selectedColor = selectedColor;
 
-    self.menuTableView.selectedTextColor = selectedColor;
     [self.menuBarButtons makeObjectsPerformSelector:@selector(setLx_selectedTitleColor:)
                                          withObject:selectedColor];
-}
-
-- (void)setSelectedBackgroundColor:(UIColor *)selectedBackgroundColor
-{
-    _selectedBackgroundColor = selectedBackgroundColor;
-
-    self.menuTableView.selectedBackgroundColor = selectedBackgroundColor;
 }
 
 #pragma mark - 菜单栏按钮点击处理
@@ -155,7 +223,7 @@
 {
     // 被点击的菜单栏按钮已是选中状态，此时应该关闭菜单，而不是配置菜单项
     if (tappedButton.selected) {
-        self.menuTableView.items = nil;
+        self.menuItems = nil;
         self.currentMenuIndex = NSNotFound;
         return;
     }
@@ -164,7 +232,7 @@
         if (buuton == tappedButton) {
             *stop = YES;
             self.currentMenuIndex = idx;
-            self.menuTableView.items = [self.delegate pullDownMenu:self itemsForMenuAtIndex:idx];
+            self.menuItems = [self.delegate pullDownMenu:self itemsForMenuAtIndex:idx];
         }
     }];
 }
@@ -178,15 +246,15 @@
             completion();
         } else {
             // 点击当前菜单栏按钮，关闭菜单
-            CGFloat height = self.menuTableView.heightConstraint.constant;
+            CGFloat height = self.menuTableViewHeightConstraint.constant;
             [UIView animateWithDuration:self.animationDuration animations:^{
                 self.menuBackgroundView.alpha = 0;
-                self.menuTableView.heightConstraint.constant = 0;
+                self.menuTableViewHeightConstraint.constant = 0;
                 [self.menuWrapperView layoutIfNeeded];
             } completion:^(BOOL finished) {
                 self.isOpen = NO;
                 self.menuWrapperView.hidden = YES;
-                self.menuTableView.heightConstraint.constant = height;
+                self.menuTableViewHeightConstraint.constant = height;
                 completion();
             }];
         }
@@ -199,13 +267,13 @@
 
             self.menuWrapperView.hidden = NO;
             self.menuBackgroundView.alpha = 0;
-            CGFloat height = self.menuTableView.heightConstraint.constant;
-            self.menuTableView.heightConstraint.constant = 0;
+            CGFloat height = self.menuTableViewHeightConstraint.constant;
+            self.menuTableViewHeightConstraint.constant = 0;
             [self.menuWrapperView layoutIfNeeded];
 
             [UIView animateWithDuration:self.animationDuration animations:^{
                 self.menuBackgroundView.alpha = 1;
-                self.menuTableView.heightConstraint.constant = height;
+                self.menuTableViewHeightConstraint.constant = height;
                 [self.menuWrapperView layoutIfNeeded];
             } completion:^(BOOL finished) {
                 self.isOpen = YES;
@@ -225,7 +293,7 @@
     }
 }
 
-#pragma mark - 背景蒙版触摸处理
+#pragma mark - 背景蒙版点击处理
 
 - (IBAction)menuCoverViewDidTapped:(UITapGestureRecognizer *)sender
 {
@@ -235,7 +303,34 @@
             break;
         }
     }
-    NSLog(@"%@", @(__func__));
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.menuItems.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *const reuseIdentifier = @"UITableViewCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:reuseIdentifier];
+        cell.selectedBackgroundView = [UIView new];
+    }
+
+    cell.textLabel.text = self.menuItems[indexPath.row];
+    cell.textLabel.font = self.itemTextFont;
+    cell.textLabel.textColor = self.normalColor;
+    cell.textLabel.highlightedTextColor = self.selectedColor;
+    cell.selectedBackgroundView.backgroundColor = self.selectedBackgroundColor;
+
+    return cell;
 }
 
 @end

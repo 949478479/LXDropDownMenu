@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemsForMenuAtIndex:(NSUInteger)index;
 
 @optional
-- (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuAtIndex:(NSUInteger)index;
+/// 
+- (void)pullDownMenu:(YZPullDownMenu *)menu didSelectedItemAtIndex:(NSUInteger)index;
 
 @end
 

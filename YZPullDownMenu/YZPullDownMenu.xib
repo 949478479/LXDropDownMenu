@@ -11,7 +11,7 @@
         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnh-rH-NE0" userLabel="Menu View Bar" customClass="YZPullDownMenu" propertyAccessControl="all">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig3-Pj-5ac" customClass="YZPullDownMenuBarButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig3-Pj-5ac" customClass="__YZPullDownMenuBarButton">
                     <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
                     <state key="normal" title="附近" image="down_arrow">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -23,7 +23,7 @@
                         <action selector="handleBarButtonDidTapped:" destination="rnh-rH-NE0" eventType="touchUpInside" id="wwu-7S-ttg"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPY-Yk-W7n" customClass="YZPullDownMenuBarButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPY-Yk-W7n" customClass="__YZPullDownMenuBarButton">
                     <rect key="frame" x="125" y="0.0" width="125" height="44"/>
                     <state key="normal" title="排序" image="down_arrow">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,7 +35,7 @@
                         <action selector="handleBarButtonDidTapped:" destination="rnh-rH-NE0" eventType="touchUpInside" id="wxE-GF-SRq"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLJ-jR-QhZ" customClass="YZPullDownMenuBarButton">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLJ-jR-QhZ" customClass="__YZPullDownMenuBarButton">
                     <rect key="frame" x="251" y="0.0" width="124" height="44"/>
                     <state key="normal" title="分类" image="down_arrow">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -100,6 +100,7 @@
             <connections>
                 <outlet property="menuBackgroundView" destination="cEs-i5-Hsm" id="a1i-vc-dJi"/>
                 <outlet property="menuTableView" destination="Lqh-xb-c24" id="ne7-si-Lyi"/>
+                <outlet property="menuTableViewHeightConstraint" destination="Mi9-qg-PJd" id="XGq-Fg-FPs"/>
                 <outlet property="menuWrapperView" destination="zrw-6Q-heE" id="CCp-Qa-g7T"/>
                 <outletCollection property="menuBarButtons" destination="Ig3-Pj-5ac" id="iN7-aJ-J4E"/>
                 <outletCollection property="menuBarButtons" destination="HPY-Yk-W7n" id="FwT-OL-pwJ"/>
@@ -122,14 +123,15 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5eC-OG-xBJ" userLabel="Menu Table View Background View" customClass="__YZPullDownMenuTableViewBackgroundView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lqh-xb-c24" userLabel="Menu Table View" customClass="YZPullDownMenuTableView">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lqh-xb-c24" userLabel="Menu Table View" customClass="__YZPullDownMenuTableView">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="379"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="379" id="Mi9-qg-PJd"/>
                             </constraints>
                             <connections>
-                                <outlet property="heightConstraint" destination="Mi9-qg-PJd" id="aFe-bw-6Jy"/>
+                                <outlet property="dataSource" destination="rnh-rH-NE0" id="yxn-HX-CTp"/>
+                                <outlet property="delegate" destination="rnh-rH-NE0" id="iTd-a4-crL"/>
                             </connections>
                         </tableView>
                     </subviews>
