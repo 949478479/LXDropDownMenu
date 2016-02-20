@@ -8,12 +8,23 @@
 #import "LXUtilities.h"
 #import "YZPullDownMenu.h"
 #import "YZPullDownMenuTableView.h"
-#import "YZPullDownMenuWrapperView.h"
-#import "YZPullDownMenuBackgroundView.h"
+
 
 @interface __YZPullDownMenuBarSeparatorView : UIView
 @end
 @implementation __YZPullDownMenuBarSeparatorView
+@end
+
+
+@interface __YZPullDownMenuWrapperView : UIView
+@end
+@implementation __YZPullDownMenuWrapperView
+@end
+
+
+@interface __YZPullDownMenuBackgroundView : UIView
+@end
+@implementation __YZPullDownMenuBackgroundView
 @end
 
 
@@ -25,13 +36,13 @@
 @property (nonatomic, readwrite) NSUInteger currentMenuIndex;
 
 /// 菜单栏按钮
-@property (nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *barButtons;
+@property (nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *menuBarButtons;
+/// 菜单背景视图
+@property (nonatomic) IBOutlet __YZPullDownMenuBackgroundView *menuBackgroundView;
 /// 菜单容器视图
-@property (nonatomic) IBOutlet YZPullDownMenuWrapperView *menuWrapperView;
+@property (nonatomic) IBOutlet __YZPullDownMenuWrapperView *menuWrapperView;
 /// 菜单表视图
 @property (nonatomic) IBOutlet YZPullDownMenuTableView *menuTableView;
-/// 菜单背景视图
-@property (nonatomic) IBOutlet YZPullDownMenuBackgroundView *menuBackgroundView;
 
 @end
 
@@ -73,12 +84,14 @@
 - (void)setRowHeight:(CGFloat)rowHeight
 {
     _rowHeight = rowHeight;
+
     self.menuTableView.rowHeight = rowHeight;
 }
 
 - (void)setMaxVisibleRows:(NSUInteger)maxVisibleRows
 {
     _maxVisibleRows = maxVisibleRows;
+
     self.menuTableView.maxVisibleRows = maxVisibleRows;
 }
 
@@ -86,7 +99,7 @@
 {
     _buttonTextFont = buttonTextFont;
 
-    for (UIButton *button in self.barButtons) {
+    for (UIButton *button in self.menuBarButtons) {
         button.titleLabel.font = buttonTextFont;
     }
 }
@@ -105,8 +118,8 @@
     // 让所有菜单栏按钮标题和图片显示普通状态的颜色
     self.tintColor = normalColor;
     self.menuTableView.normalTextColor = normalColor;
-    [self.barButtons makeObjectsPerformSelector:@selector(setLx_normalTitleColor:)
-                                     withObject:normalColor];
+    [self.menuBarButtons makeObjectsPerformSelector:@selector(setLx_normalTitleColor:)
+                                         withObject:normalColor];
 }
 
 - (void)setSelectedColor:(UIColor *)selectedColor
@@ -114,8 +127,8 @@
     _selectedColor = selectedColor;
 
     self.menuTableView.selectedTextColor = selectedColor;
-    [self.barButtons makeObjectsPerformSelector:@selector(setLx_selectedTitleColor:)
-                                     withObject:selectedColor];
+    [self.menuBarButtons makeObjectsPerformSelector:@selector(setLx_selectedTitleColor:)
+                                         withObject:selectedColor];
 }
 
 - (void)setSelectedBackgroundColor:(UIColor *)selectedBackgroundColor
@@ -147,7 +160,7 @@
         return;
     }
 
-    [self.barButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
+    [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
         if (buuton == tappedButton) {
             *stop = YES;
             self.currentMenuIndex = idx;
@@ -202,7 +215,7 @@
     }
 
     // 将被点击按钮设为选中状态，取消其他按钮的选中状态
-    for (UIButton *button in self.barButtons) {
+    for (UIButton *button in self.menuBarButtons) {
         if (button == tappedButton) {
             button.selected = !button.selected;
         } else {
@@ -210,6 +223,19 @@
         }
         button.tintColor = button.selected ? self.selectedColor : self.normalColor;
     }
+}
+
+#pragma mark - 背景蒙版触摸处理
+
+- (IBAction)menuCoverViewDidTapped:(UITapGestureRecognizer *)sender
+{
+    for (UIButton *button in self.menuBarButtons) {
+        if (button.selected) {
+            [self handleBarButtonDidTapped:button];
+            break;
+        }
+    }
+    NSLog(@"%@", @(__func__));
 }
 
 @end

@@ -8,6 +8,13 @@
 #import "YZPullDownMenuTableView.h"
 #import "YZPullDownMenuTableViewCell.h"
 
+
+@interface __YZPullDownMenuTableViewBackgroundView : UIView
+@end
+@implementation __YZPullDownMenuTableViewBackgroundView
+@end
+
+
 @interface YZPullDownMenuTableView () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak, readwrite) IBOutlet NSLayoutConstraint *heightConstraint;
 @end
