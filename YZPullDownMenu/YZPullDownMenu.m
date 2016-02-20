@@ -68,20 +68,34 @@
     }
 }
 
-#pragma mark - 设置菜单样式
+#pragma mark - 设置菜单外观
 
 - (void)setRowHeight:(CGFloat)rowHeight
 {
     _rowHeight = rowHeight;
-
     self.menuTableView.rowHeight = rowHeight;
 }
 
 - (void)setMaxVisibleRows:(NSUInteger)maxVisibleRows
 {
     _maxVisibleRows = maxVisibleRows;
-
     self.menuTableView.maxVisibleRows = maxVisibleRows;
+}
+
+- (void)setButtonTextFont:(UIFont *)buttonTextFont
+{
+    _buttonTextFont = buttonTextFont;
+
+    for (UIButton *button in self.barButtons) {
+        button.titleLabel.font = buttonTextFont;
+    }
+}
+
+- (void)setItemTextFont:(UIFont *)itemTextFont
+{
+    _itemTextFont = itemTextFont;
+
+    self.menuTableView.textFont = itemTextFont;
 }
 
 - (void)setNormalColor:(UIColor *)normalColor
@@ -90,9 +104,7 @@
 
     // 让所有菜单栏按钮标题和图片显示普通状态的颜色
     self.tintColor = normalColor;
-
     self.menuTableView.normalTextColor = normalColor;
-
     [self.barButtons makeObjectsPerformSelector:@selector(setLx_normalTitleColor:)
                                      withObject:normalColor];
 }
@@ -102,11 +114,16 @@
     _selectedColor = selectedColor;
 
     self.menuTableView.selectedTextColor = selectedColor;
-
     [self.barButtons makeObjectsPerformSelector:@selector(setLx_selectedTitleColor:)
                                      withObject:selectedColor];
 }
 
+- (void)setSelectedBackgroundColor:(UIColor *)selectedBackgroundColor
+{
+    _selectedBackgroundColor = selectedBackgroundColor;
+
+    self.menuTableView.selectedBackgroundColor = selectedBackgroundColor;
+}
 
 #pragma mark - 菜单栏按钮点击处理
 

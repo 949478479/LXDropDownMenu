@@ -11,10 +11,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YZPullDownMenuTableView : UITableView
 
+/// 菜单项文本字体
+@property (nullable, nonatomic) UIFont *textFont;
 /// 菜单项普通状态文本颜色
-@property (nonatomic) UIColor *normalTextColor;
+@property (nullable, nonatomic) UIColor *normalTextColor;
 /// 菜单项选中状态文本颜色
-@property (nonatomic) UIColor *selectedTextColor;
+@property (nullable, nonatomic) UIColor *selectedTextColor;
+/// 菜单项选中状态背景颜色
+@property (nullable, nonatomic) UIColor *selectedBackgroundColor;
 /// 菜单最大显示行数
 @property (nonatomic) NSUInteger maxVisibleRows;
 /// 菜单内容

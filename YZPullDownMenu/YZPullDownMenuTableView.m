@@ -23,15 +23,14 @@
     self.delegate = self;
     self.dataSource = self;
 
-    [self registerClass:[YZPullDownMenuTableViewCell class]
- forCellReuseIdentifier:@"YZPullDownMenuTableViewCell"];
+    [self registerClass:[YZPullDownMenuTableViewCell class] forCellReuseIdentifier:@"YZPullDownMenuTableViewCell"];
 }
 
 #pragma mark - 触摸处理
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    // 触摸点位于菜单表视图的内容范围内则让表视图处理
+    // 触摸点位于菜单表视图的内容范围内则让菜单表视图处理
     CGRect contentRect = self.bounds;
     contentRect.size.height = MIN(self.contentSize.height, contentRect.size.height);
     if (CGRectContainsPoint(contentRect, point)) {
@@ -74,10 +73,12 @@
 {
     YZPullDownMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YZPullDownMenuTableViewCell"
                                                                         forIndexPath:indexPath];
-    cell.textLabel.text = self.items[indexPath.row];
+    cell.text = self.items[indexPath.row];
+    cell.textFont = self.textFont;
     cell.normalTextColor = self.normalTextColor;
     cell.selectedTextColor = self.selectedTextColor;
-
+    cell.selectedBackgroundColor = self.selectedBackgroundColor;
+    
     return cell;
 }
 
