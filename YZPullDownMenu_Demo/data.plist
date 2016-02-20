@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>附近</string>
+		<string>和平区</string>
+		<string>河西区</string>
+		<string>河东区</string>
+		<string>南开区</string>
+		<string>河北区</string>
+		<string>虹桥区</string>
+		<string>北辰区</string>
+		<string>西青区</string>
+		<string>津南区</string>
+		<string>滨海新区</string>
+	</array>
+	<array>
+		<string>商家贴分排序</string>
+		<string>离我最近</string>
+		<string>评价最好</string>
+	</array>
+	<array>
+		<string>全部美食</string>
+		<string>火锅</string>
+		<string>小吃快餐</string>
+		<string>烧烤</string>
+		<string>西餐</string>
+		<string>面包甜点</string>
+		<string>咖啡厅</string>
+		<string>天津菜</string>
+		<string>日料</string>
+		<string>韩料</string>
+		<string>其它</string>
+	</array>
+</array>
+</plist>

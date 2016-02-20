@@ -11,7 +11,9 @@
 
 @interface ViewController () <YZPullDownMenuDelegate>
 
+@property (nonatomic) NSArray<NSArray<NSString *> *> *items;
 @property (weak, nonatomic) IBOutlet YZPullDownMenu *pullDownMenu;
+@property (nonatomic) NSMutableDictionary *selectedItemsRecord;
 
 @end
 
@@ -20,6 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.selectedItemsRecord = [NSMutableDictionary new];
 }
 
 - (void)didReceiveMemoryWarning
@@ -28,25 +32,33 @@
 
     if (self.isViewLoaded && !self.view.window) {
         self.view = nil;
+        self.items = nil;
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (NSArray<NSArray<NSString *> *> *)items
 {
-    [self.view layoutIfNeeded];
-}
-- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemsForMenuAtIndex:(NSUInteger)index
-{
-    switch (index) {
-        case 0:
-            return @[@"附近", @"和平区", @"河西区", @"河东区", @"南开区", @"河北区", @"虹桥区", @"北辰区", @"西青区", @"津南区", @"滨海新区"];
-        case 1:
-            return @[@"商家贴分排序", @"离我最近", @"评价最好"];
-        case 2:
-            return @[@"全部美食", @"火锅", @"小吃快餐", @"烧烤", @"西餐", @"面包甜点", @"咖啡厅", @"天津菜", @"日料", @"韩料", @"其它"];
+    if (!_items) {
+        _items = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data.plist" ofType:nil]];
     }
-    NSAssert(NO, @"这不科学");
-    return nil;
+    return _items;
+}
+
+- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemsForMenuInSection:(NSUInteger)section
+{
+    return self.items[section];;
+}
+
+- (void)pullDownMenu:(YZPullDownMenu *)menu didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"%@", self.items[indexPath.section][indexPath.row]);
+
+    self.selectedItemsRecord[@(indexPath.section)] = indexPath;
+}
+
+- (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuInSection:(NSUInteger)section
+{
+    [menu selectItemAtIndexPath:self.selectedItemsRecord[@(section)]];
 }
 
 @end

@@ -162,7 +162,7 @@
         </view>
         <tapGestureRecognizer id="eQv-0V-fUE" propertyAccessControl="all">
             <connections>
-                <action selector="menuCoverViewDidTapped:" destination="rnh-rH-NE0" id="ap2-8e-H0C"/>
+                <action selector="menuBackgroundViewDidTapped:" destination="rnh-rH-NE0" id="ap2-8e-H0C"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

@@ -104,8 +104,8 @@
 
 /// 菜单是否打开
 @property (nonatomic, readwrite) BOOL isOpen;
-/// 当前打开的菜单的索引
-@property (nonatomic, readwrite) NSUInteger currentMenuIndex;
+/// 当前打开的菜单分组
+@property (nonatomic, readwrite) NSUInteger currentMenuSection;
 /// 菜单内容
 @property (nonatomic, copy) NSArray<NSString *> *menuItems;
 
@@ -124,10 +124,10 @@
 
 @implementation YZPullDownMenu
 
-- (void)dealloc
-{
-    LXLog(@"%@ delloc", self);
-}
+//- (void)dealloc
+//{
+//    LXLog(@"%@ delloc", self);
+//}
 
 #pragma mark - 添加移除菜单视图
 
@@ -224,15 +224,15 @@
     // 被点击的菜单栏按钮已是选中状态，此时应该关闭菜单，而不是配置菜单项
     if (tappedButton.selected) {
         self.menuItems = nil;
-        self.currentMenuIndex = NSNotFound;
+        self.currentMenuSection = NSNotFound;
         return;
     }
 
     [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
         if (buuton == tappedButton) {
             *stop = YES;
-            self.currentMenuIndex = idx;
-            self.menuItems = [self.delegate pullDownMenu:self itemsForMenuAtIndex:idx];
+            self.currentMenuSection = idx;
+            self.menuItems = [self.delegate pullDownMenu:self itemsForMenuInSection:idx];
         }
     }];
 }
@@ -240,12 +240,13 @@
 - (void)switchMenuStateForTappedButton:(UIButton *)tappedButton completion:(void (^)(void))completion
 {
     if (self.isOpen) {
-        if (!tappedButton.selected) {
-            // 点击了其它菜单栏按钮，刷新菜单内容
+        if (!tappedButton.selected) { // 点击了其它菜单栏按钮，刷新菜单内容
             [self.menuTableView reloadData];
+            if ([self.delegate respondsToSelector:@selector(pullDownMenu:willOpenMenuInSection:)]) {
+                [self.delegate pullDownMenu:self willOpenMenuInSection:self.currentMenuSection];
+            }
             completion();
-        } else {
-            // 点击当前菜单栏按钮，关闭菜单
+        } else { // 点击当前菜单栏按钮，关闭菜单
             CGFloat height = self.menuTableViewHeightConstraint.constant;
             [UIView animateWithDuration:self.animationDuration animations:^{
                 self.menuBackgroundView.alpha = 0;
@@ -258,28 +259,26 @@
                 completion();
             }];
         }
-    } else {
-        // 菜单由关闭状态被打开，刷新菜单内容
-        [self.menuTableView reloadData];
+    } else { // 菜单由关闭状态被打开，刷新菜单内容
+        self.menuWrapperView.hidden = NO;
+        self.menuBackgroundView.alpha = 0;
+        CGFloat height = self.menuTableViewHeightConstraint.constant;
+        self.menuTableViewHeightConstraint.constant = 0;
+        [self.menuWrapperView layoutIfNeeded];
 
-        // 将表视图展开关闭的动画延迟一个运行循环执行，否则动画效果会很难看
-        dispatch_async(dispatch_get_main_queue(), ^{
-
-            self.menuWrapperView.hidden = NO;
-            self.menuBackgroundView.alpha = 0;
-            CGFloat height = self.menuTableViewHeightConstraint.constant;
-            self.menuTableViewHeightConstraint.constant = 0;
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            self.menuBackgroundView.alpha = 1;
+            self.menuTableViewHeightConstraint.constant = height;
             [self.menuWrapperView layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            self.isOpen = YES;
+            completion();
+        }];
 
-            [UIView animateWithDuration:self.animationDuration animations:^{
-                self.menuBackgroundView.alpha = 1;
-                self.menuTableViewHeightConstraint.constant = height;
-                [self.menuWrapperView layoutIfNeeded];
-            } completion:^(BOOL finished) {
-                self.isOpen = YES;
-                completion();
-            }];
-        });
+        [self.menuTableView reloadData];
+        if ([self.delegate respondsToSelector:@selector(pullDownMenu:willOpenMenuInSection:)]) {
+            [self.delegate pullDownMenu:self willOpenMenuInSection:self.currentMenuSection];
+        }
     }
 
     // 将被点击按钮设为选中状态，取消其他按钮的选中状态
@@ -293,9 +292,9 @@
     }
 }
 
-#pragma mark - 背景蒙版点击处理
+#pragma mark - 菜单背景蒙版点击处理
 
-- (IBAction)menuCoverViewDidTapped:(UITapGestureRecognizer *)sender
+- (IBAction)menuBackgroundViewDidTapped:(UITapGestureRecognizer *)sender
 {
     for (UIButton *button in self.menuBarButtons) {
         if (button.selected) {
@@ -331,6 +330,36 @@
     cell.selectedBackgroundView.backgroundColor = self.selectedBackgroundColor;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(pullDownMenu:didSelectItemAtIndexPath:)]) {
+        [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
+            if (button.selected) {
+                *stop = YES;
+                NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:idx];
+                [self.delegate pullDownMenu:self didSelectItemAtIndexPath:_indexPath];
+            }
+        }];
+    }
+}
+
+#pragma mark - 公共接口
+
+- (void)selectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+
+    // 选中指定行，注意这里指定 UITableViewScrollPositionNone 会导致没有滚动而不是最小滚动，详见文档
+    [self.menuTableView selectRowAtIndexPath:_indexPath
+                                    animated:NO
+                              scrollPosition:UITableViewScrollPositionNone];
+
+    // 将指定行以最小滚动距离滚入屏幕
+    [self.menuTableView scrollToRowAtIndexPath:_indexPath
+                              atScrollPosition:UITableViewScrollPositionNone
+                                      animated:NO];
 }
 
 @end

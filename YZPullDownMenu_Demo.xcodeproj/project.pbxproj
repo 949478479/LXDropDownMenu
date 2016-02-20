@@ -62,6 +62,7 @@
 		2DF2B8E51C78463600F19FC6 /* LXWeakWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B41C78463600F19FC6 /* LXWeakWrapper.m */; };
 		2DF2B8E61C78463600F19FC6 /* LXRuntimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */; };
 		2DF2B8E71C78463600F19FC6 /* LXUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */; };
+		2DF2B8EC1C78B31900F19FC6 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8EB1C78B31900F19FC6 /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +170,7 @@
 		2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRuntimeUtilities.m; sourceTree = "<group>"; };
 		2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXUtilities.swift; sourceTree = "<group>"; };
 		2DF2B8B91C78463600F19FC6 /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
+		2DF2B8EB1C78B31900F19FC6 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				2DF2B8351C7842C100F19FC6 /* Assets.xcassets */,
 				2DF2B8371C7842C100F19FC6 /* LaunchScreen.storyboard */,
 				2DF2B83A1C7842C100F19FC6 /* Info.plist */,
+				2DF2B8EB1C78B31900F19FC6 /* data.plist */,
 				2DF2B8291C7842C000F19FC6 /* Supporting Files */,
 			);
 			path = YZPullDownMenu_Demo;
@@ -469,6 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DF2B8EC1C78B31900F19FC6 /* data.plist in Resources */,
 				2DF2B84D1C78431E00F19FC6 /* YZPullDownMenu.xib in Resources */,
 				2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */,
 				2DF2B8C81C78463600F19FC6 /* MBProgressHUD.bundle in Resources */,
