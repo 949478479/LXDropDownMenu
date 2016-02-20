@@ -66,6 +66,7 @@
 		2DF2B8E51C78463600F19FC6 /* LXWeakWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B41C78463600F19FC6 /* LXWeakWrapper.m */; };
 		2DF2B8E61C78463600F19FC6 /* LXRuntimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */; };
 		2DF2B8E71C78463600F19FC6 /* LXUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */; };
+		2DF2B8EA1C78649000F19FC6 /* YZPullDownMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8E91C78649000F19FC6 /* YZPullDownMenuTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,6 +182,8 @@
 		2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRuntimeUtilities.m; sourceTree = "<group>"; };
 		2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXUtilities.swift; sourceTree = "<group>"; };
 		2DF2B8B91C78463600F19FC6 /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
+		2DF2B8E81C78649000F19FC6 /* YZPullDownMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPullDownMenuTableViewCell.h; sourceTree = "<group>"; };
+		2DF2B8E91C78649000F19FC6 /* YZPullDownMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPullDownMenuTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 				2DF2B8471C78431E00F19FC6 /* YZPullDownMenuBarButton.m */,
 				2DF2B8481C78431E00F19FC6 /* YZPullDownMenuTableView.h */,
 				2DF2B8491C78431E00F19FC6 /* YZPullDownMenuTableView.m */,
+				2DF2B8E81C78649000F19FC6 /* YZPullDownMenuTableViewCell.h */,
+				2DF2B8E91C78649000F19FC6 /* YZPullDownMenuTableViewCell.m */,
 				2DF2B84A1C78431E00F19FC6 /* YZPullDownMenuWrapperView.h */,
 				2DF2B84B1C78431E00F19FC6 /* YZPullDownMenuWrapperView.m */,
 			);
@@ -553,6 +558,7 @@
 				2DF2B8C41C78463600F19FC6 /* NSObject+LXExtension.m in Sources */,
 				2DF2B8CF1C78463600F19FC6 /* CGAffineTransform+LXExtension.swift in Sources */,
 				2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */,
+				2DF2B8EA1C78649000F19FC6 /* YZPullDownMenuTableViewCell.m in Sources */,
 				2DF2B8511C78431E00F19FC6 /* YZPullDownMenuWrapperView.m in Sources */,
 				2DF2B8DD1C78463600F19FC6 /* UIWindow+LXExtension.m in Sources */,
 				2DF2B8DB1C78463600F19FC6 /* UIView+LXExtension.m in Sources */,
@@ -706,6 +712,7 @@
 				2DF2B83F1C7842C100F19FC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

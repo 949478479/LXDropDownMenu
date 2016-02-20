@@ -9,9 +9,7 @@
 
 @implementation UIButton (LXExtension)
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark - 设置/获取标题
+#pragma mark - 设置和获取标题 -
 
 - (void)setLx_normalTitle:(NSString *)lx_normalTitle
 {
@@ -53,9 +51,49 @@
     return [self titleForState:UIControlStateHighlighted];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - 设置和获取标题颜色 -
 
-#pragma mark - 设置/获取图片
+- (void)setLx_normalTitleColor:(UIColor *)lx_normalTitleColor
+{
+    [self setTitleColor:lx_normalTitleColor forState:UIControlStateNormal];
+}
+
+- (UIColor *)lx_normalTitleColor
+{
+    return [self titleColorForState:UIControlStateNormal];
+}
+
+- (void)setLx_disabledTitleColor:(UIColor *)lx_disabledTitleColor
+{
+    [self setTitleColor:lx_disabledTitleColor forState:UIControlStateDisabled];
+}
+
+- (UIColor *)lx_disabledTitleColor
+{
+    return [self titleColorForState:UIControlStateDisabled];
+}
+
+- (void)setLx_selectedTitleColor:(UIColor *)lx_selectedTitleColor
+{
+    [self setTitleColor:lx_selectedTitleColor forState:UIControlStateSelected];
+}
+
+- (UIColor *)lx_selectedTitleColor
+{
+    return [self titleColorForState:UIControlStateSelected];
+}
+
+- (void)setLx_highlightedTitleColor:(UIColor *)lx_highlightedTitleColor
+{
+    [self setTitleColor:lx_highlightedTitleColor forState:UIControlStateHighlighted];
+}
+
+- (UIColor *)lx_highlightedTitleColor
+{
+    return [self titleColorForState:UIControlStateHighlighted];
+}
+
+#pragma mark - 设置和获取图片 -
 
 - (void)setLx_normalImage:(UIImage *)lx_normalImage
 {
@@ -97,9 +135,7 @@
     return [self imageForState:UIControlStateHighlighted];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-#pragma mark - 设置/获取背景图片
+#pragma mark - 设置和获取背景图片 -
 
 - (void)setLx_normalBackgroundImage:(UIImage *)lx_normalBackgroundImage
 {

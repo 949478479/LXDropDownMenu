@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) IBInspectable CGFloat rowHeight;
 /// 菜单最大显示行数
 @property (nonatomic) IBInspectable NSUInteger maxVisibleRows;
+/// 普通状态颜色
+@property (nonatomic) IBInspectable UIColor *normalColor;
+/// 选中状态颜色
+@property (nonatomic) IBInspectable UIColor *selectedColor;
 /// 动画持续时间
 @property (nonatomic) IBInspectable double animationDuration;
 

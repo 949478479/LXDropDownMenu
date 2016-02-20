@@ -68,7 +68,7 @@
     }
 }
 
-#pragma mark - 设置菜单显示行数
+#pragma mark - 设置菜单样式
 
 - (void)setRowHeight:(CGFloat)rowHeight
 {
@@ -83,6 +83,30 @@
 
     self.menuTableView.maxVisibleRows = maxVisibleRows;
 }
+
+- (void)setNormalColor:(UIColor *)normalColor
+{
+    _normalColor = normalColor;
+
+    // 让所有菜单栏按钮标题和图片显示普通状态的颜色
+    self.tintColor = normalColor;
+
+    self.menuTableView.normalTextColor = normalColor;
+
+    [self.barButtons makeObjectsPerformSelector:@selector(setLx_normalTitleColor:)
+                                     withObject:normalColor];
+}
+
+- (void)setSelectedColor:(UIColor *)selectedColor
+{
+    _selectedColor = selectedColor;
+
+    self.menuTableView.selectedTextColor = selectedColor;
+
+    [self.barButtons makeObjectsPerformSelector:@selector(setLx_selectedTitleColor:)
+                                     withObject:selectedColor];
+}
+
 
 #pragma mark - 菜单栏按钮点击处理
 
@@ -167,6 +191,7 @@
         } else {
             button.selected = NO;
         }
+        button.tintColor = button.selected ? self.selectedColor : self.normalColor;
     }
 }
 

@@ -16,15 +16,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *lx_selectedTitle;
 @property (nullable, nonatomic, copy) NSString *lx_highlightedTitle;
 
-@property (nullable, nonatomic, strong) UIImage *lx_normalImage;
-@property (nullable, nonatomic, strong) UIImage *lx_disabledImage;
-@property (nullable, nonatomic, strong) UIImage *lx_selectedImage;
-@property (nullable, nonatomic, strong) UIImage *lx_highlightedImage;
+@property (nullable, nonatomic, copy) UIColor *lx_normalTitleColor;
+@property (nullable, nonatomic, copy) UIColor *lx_disabledTitleColor;
+@property (nullable, nonatomic, copy) UIColor *lx_selectedTitleColor;
+@property (nullable, nonatomic, copy) UIColor *lx_highlightedTitleColor;
 
-@property (nullable, nonatomic, strong) UIImage *lx_normalBackgroundImage;
-@property (nullable, nonatomic, strong) UIImage *lx_disabledBackgroundImage;
-@property (nullable, nonatomic, strong) UIImage *lx_selectedBackgroundImage;
-@property (nullable, nonatomic, strong) UIImage *lx_highlightedBackgroundImage;
+@property (nullable, nonatomic) UIImage *lx_normalImage;
+@property (nullable, nonatomic) UIImage *lx_disabledImage;
+@property (nullable, nonatomic) UIImage *lx_selectedImage;
+@property (nullable, nonatomic) UIImage *lx_highlightedImage;
+
+@property (nullable, nonatomic) UIImage *lx_normalBackgroundImage;
+@property (nullable, nonatomic) UIImage *lx_disabledBackgroundImage;
+@property (nullable, nonatomic) UIImage *lx_selectedBackgroundImage;
+@property (nullable, nonatomic) UIImage *lx_highlightedBackgroundImage;
 
 @end
 

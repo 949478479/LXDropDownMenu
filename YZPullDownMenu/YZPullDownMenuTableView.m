@@ -6,6 +6,7 @@
 //
 
 #import "YZPullDownMenuTableView.h"
+#import "YZPullDownMenuTableViewCell.h"
 
 @interface YZPullDownMenuTableView () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, weak, readwrite) IBOutlet NSLayoutConstraint *heightConstraint;
@@ -22,7 +23,8 @@
     self.delegate = self;
     self.dataSource = self;
 
-    [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    [self registerClass:[YZPullDownMenuTableViewCell class]
+ forCellReuseIdentifier:@"YZPullDownMenuTableViewCell"];
 }
 
 #pragma mark - 触摸处理
@@ -70,9 +72,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"
-                                                            forIndexPath:indexPath];
+    YZPullDownMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YZPullDownMenuTableViewCell"
+                                                                        forIndexPath:indexPath];
     cell.textLabel.text = self.items[indexPath.row];
+    cell.normalTextColor = self.normalTextColor;
+    cell.selectedTextColor = self.selectedTextColor;
 
     return cell;
 }
