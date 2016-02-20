@@ -7,21 +7,38 @@
 //
 
 #import "ViewController.h"
+#import "YZPullDownMenu.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet YZPullDownMenu *pullDownMenu;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.pullDownMenu.willOpenLeftMenu = ^(YZPullDownMenu *menu) {
+        return @[@"附近", @"和平区", @"河西区", @"河东区", @"南开区", @"河北区", @"虹桥区", @"北辰区", @"西青区", @"津南区", @"滨海新区"];
+    };
+
+    self.pullDownMenu.willOpenCenterMenu = ^(YZPullDownMenu *menu) {
+        return @[@"商家贴分排序", @"离我最近", @"评价最好"];
+    };
+
+    self.pullDownMenu.willOpenRightMenu = ^(YZPullDownMenu *menu) {
+        return @[@"全部美食", @"火锅", @"小吃快餐", @"烧烤", @"西餐", @"面包甜点", @"咖啡厅", @"天津菜", @"日料", @"韩料", @"其它"];
+    };
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+    
 }
 
 @end
