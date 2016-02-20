@@ -21,16 +21,11 @@
 
 /// 菜单是否打开
 @property (nonatomic, readwrite) BOOL isOpen;
+/// 当前打开的菜单的索引
+@property (nonatomic, readwrite) NSUInteger currentMenuIndex;
 
-/// 左侧菜单栏按钮
-@property (nonatomic, weak) IBOutlet UIButton *leftBarButton;
-/// 中间菜单栏按钮
-@property (nonatomic, weak) IBOutlet UIButton *centerBarButton;
-/// 右侧菜单栏按钮
-@property (nonatomic, weak) IBOutlet UIButton *rightBarButton;
-/// 全部菜单栏按钮
-@property (nonatomic) IBOutletCollection(UIButton) NSArray *barButtons;
-
+/// 菜单栏按钮
+@property (nonatomic) IBOutletCollection(UIButton) NSArray<UIButton *> *barButtons;
 /// 菜单容器视图
 @property (nonatomic) IBOutlet YZPullDownMenuWrapperView *menuWrapperView;
 /// 菜单表视图
@@ -42,17 +37,25 @@
 
 @implementation YZPullDownMenu
 
+- (void)dealloc
+{
+    LXLog(@"%@ delloc", self);
+}
+
 #pragma mark - 添加移除菜单视图
 
 - (void)didMoveToWindow
 {
-    // 菜单栏添加到窗口时，将菜单视图添加到窗口上层，上贴菜单栏，下贴选项卡或屏幕底部，左右紧贴窗口边缘
-    if (self.window) {
-        self.menuWrapperView.hidden = YES;
-        [self.window addSubview:self.menuWrapperView];
+    // 菜单栏添加到窗口时，且菜单视图尚未添加，则添加菜单视图
+    if (self.window && !self.menuWrapperView.superview) {
 
-        self.menuWrapperView.translatesAutoresizingMaskIntoConstraints = NO;
-        id menuView = self.menuWrapperView, bottomGuide = self.lx_viewController.bottomLayoutGuide;
+        UIViewController *vc = self.lx_viewController;
+
+        self.menuWrapperView.hidden = YES;
+        [vc.view addSubview:self.menuWrapperView];
+
+        // 上贴菜单栏，下贴选项卡或屏幕底部，左右紧贴窗口边缘
+        id menuView = self.menuWrapperView, bottomGuide = vc.bottomLayoutGuide;
         NSDictionary *views = NSDictionaryOfVariableBindings(self, menuView, bottomGuide);
         NSString *visualFormats[] = { @"H:|[menuView]|", @"V:[self][menuView][bottomGuide]" };
         for (uint i = 0; i < 2; ++i) {
@@ -62,9 +65,6 @@
                                                      metrics:nil
                                                        views:views]];
         }
-    } else {
-        // 菜单栏从窗口移除时，一并移除菜单视图
-        [self.menuWrapperView removeFromSuperview];
     }
 }
 
@@ -102,23 +102,17 @@
     // 被点击的菜单栏按钮已是选中状态，此时应该关闭菜单，而不是配置菜单项
     if (tappedButton.selected) {
         self.menuTableView.items = nil;
+        self.currentMenuIndex = NSNotFound;
         return;
     }
 
-    // 根据被点击的菜单栏按钮获取相应的菜单项
-    if (tappedButton == self.leftBarButton) {
-        if (self.willOpenLeftMenu) {
-            self.menuTableView.items = self.willOpenLeftMenu(self).copy;
+    [self.barButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
+        if (buuton == tappedButton) {
+            *stop = YES;
+            self.currentMenuIndex = idx;
+            self.menuTableView.items = [self.delegate pullDownMenu:self itemsForMenuAtIndex:idx];
         }
-    } else if (tappedButton == self.centerBarButton) {
-        if (self.willOpenCenterMenu) {
-            self.menuTableView.items = self.willOpenCenterMenu(self).copy;
-        }
-    } else if (tappedButton == self.rightBarButton) {
-        if (self.willOpenRightMenu) {
-            self.menuTableView.items = self.willOpenRightMenu(self).copy;
-        }
-    }
+    }];
 }
 
 - (void)switchMenuStateForTappedButton:(UIButton *)tappedButton completion:(void (^)(void))completion

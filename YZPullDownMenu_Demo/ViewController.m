@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "YZPullDownMenu.h"
 
-@interface ViewController ()
+@interface ViewController () <YZPullDownMenuDelegate>
 
 @property (weak, nonatomic) IBOutlet YZPullDownMenu *pullDownMenu;
 
@@ -20,25 +20,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.pullDownMenu.willOpenLeftMenu = ^(YZPullDownMenu *menu) {
-        return @[@"附近", @"和平区", @"河西区", @"河东区", @"南开区", @"河北区", @"虹桥区", @"北辰区", @"西青区", @"津南区", @"滨海新区"];
-    };
-
-    self.pullDownMenu.willOpenCenterMenu = ^(YZPullDownMenu *menu) {
-        return @[@"商家贴分排序", @"离我最近", @"评价最好"];
-    };
-
-    self.pullDownMenu.willOpenRightMenu = ^(YZPullDownMenu *menu) {
-        return @[@"全部美食", @"火锅", @"小吃快餐", @"烧烤", @"西餐", @"面包甜点", @"咖啡厅", @"天津菜", @"日料", @"韩料", @"其它"];
-    };
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 
-    
+    if (self.isViewLoaded && !self.view.window) {
+        self.view = nil;
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view layoutIfNeeded];
+}
+- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemsForMenuAtIndex:(NSUInteger)index
+{
+    switch (index) {
+        case 0:
+            return @[@"附近", @"和平区", @"河西区", @"河东区", @"南开区", @"河北区", @"虹桥区", @"北辰区", @"西青区", @"津南区", @"滨海新区"];
+        case 1:
+            return @[@"商家贴分排序", @"离我最近", @"评价最好"];
+        case 2:
+            return @[@"全部美食", @"火锅", @"小吃快餐", @"烧烤", @"西餐", @"面包甜点", @"咖啡厅", @"天津菜", @"日料", @"韩料", @"其它"];
+    }
+    NSAssert(NO, @"这不科学");
+    return nil;
 }
 
 @end

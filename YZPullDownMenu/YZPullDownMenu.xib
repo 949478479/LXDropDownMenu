@@ -98,12 +98,9 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="centerBarButton" destination="HPY-Yk-W7n" id="ecz-WK-g5b"/>
-                <outlet property="leftBarButton" destination="Ig3-Pj-5ac" id="FkR-js-6Kw"/>
                 <outlet property="menuBackgroundView" destination="cEs-i5-Hsm" id="a1i-vc-dJi"/>
                 <outlet property="menuTableView" destination="Lqh-xb-c24" id="ne7-si-Lyi"/>
                 <outlet property="menuWrapperView" destination="zrw-6Q-heE" id="CCp-Qa-g7T"/>
-                <outlet property="rightBarButton" destination="KLJ-jR-QhZ" id="1GB-yD-GmP"/>
                 <outletCollection property="barButtons" destination="Ig3-Pj-5ac" id="iN7-aJ-J4E"/>
                 <outletCollection property="barButtons" destination="HPY-Yk-W7n" id="FwT-OL-pwJ"/>
                 <outletCollection property="barButtons" destination="KLJ-jR-QhZ" id="a5d-vm-uXR"/>
