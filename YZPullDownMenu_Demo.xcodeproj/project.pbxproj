@@ -14,9 +14,6 @@
 		2DF2B8361C7842C100F19FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8351C7842C100F19FC6 /* Assets.xcassets */; };
 		2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8371C7842C100F19FC6 /* LaunchScreen.storyboard */; };
 		2DF2B84C1C78431E00F19FC6 /* YZPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */; };
-		2DF2B84D1C78431E00F19FC6 /* YZPullDownMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8431C78431E00F19FC6 /* YZPullDownMenu.xib */; };
-		2DF2B8571C78462C00F19FC6 /* XXNibBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8541C78462C00F19FC6 /* XXNibBridge.m */; };
-		2DF2B8581C78462C00F19FC6 /* XXNibConvention.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8561C78462C00F19FC6 /* XXNibConvention.m */; };
 		2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */; };
 		2DF2B8BB1C78463600F19FC6 /* NSObject+LXIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8601C78463600F19FC6 /* NSObject+LXIntrospection.m */; };
 		2DF2B8BC1C78463600F19FC6 /* NSArray+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8621C78463600F19FC6 /* NSArray+LXExtension.m */; };
@@ -78,11 +75,6 @@
 		2DF2B83A1C7842C100F19FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DF2B8411C78431E00F19FC6 /* YZPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPullDownMenu.h; sourceTree = "<group>"; };
 		2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPullDownMenu.m; sourceTree = "<group>"; };
-		2DF2B8431C78431E00F19FC6 /* YZPullDownMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YZPullDownMenu.xib; sourceTree = "<group>"; };
-		2DF2B8531C78462C00F19FC6 /* XXNibBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibBridge.h; sourceTree = "<group>"; };
-		2DF2B8541C78462C00F19FC6 /* XXNibBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibBridge.m; sourceTree = "<group>"; };
-		2DF2B8551C78462C00F19FC6 /* XXNibConvention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNibConvention.h; sourceTree = "<group>"; };
-		2DF2B8561C78462C00F19FC6 /* XXNibConvention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNibConvention.m; sourceTree = "<group>"; };
 		2DF2B85C1C78463600F19FC6 /* GCD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCD+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCD+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B85F1C78463600F19FC6 /* NSObject+LXIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXIntrospection.h"; sourceTree = "<group>"; };
@@ -188,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				2DF2B8591C78463600F19FC6 /* LXUtilities */,
-				2DF2B8521C78462C00F19FC6 /* XXNibBridge */,
 				2DF2B8401C78431E00F19FC6 /* YZPullDownMenu */,
 				2DF2B8281C7842C000F19FC6 /* YZPullDownMenu_Demo */,
 				2DF2B8271C7842C000F19FC6 /* Products */,
@@ -233,20 +224,8 @@
 			children = (
 				2DF2B8411C78431E00F19FC6 /* YZPullDownMenu.h */,
 				2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */,
-				2DF2B8431C78431E00F19FC6 /* YZPullDownMenu.xib */,
 			);
 			path = YZPullDownMenu;
-			sourceTree = "<group>";
-		};
-		2DF2B8521C78462C00F19FC6 /* XXNibBridge */ = {
-			isa = PBXGroup;
-			children = (
-				2DF2B8531C78462C00F19FC6 /* XXNibBridge.h */,
-				2DF2B8541C78462C00F19FC6 /* XXNibBridge.m */,
-				2DF2B8551C78462C00F19FC6 /* XXNibConvention.h */,
-				2DF2B8561C78462C00F19FC6 /* XXNibConvention.m */,
-			);
-			path = XXNibBridge;
 			sourceTree = "<group>";
 		};
 		2DF2B8591C78463600F19FC6 /* LXUtilities */ = {
@@ -473,7 +452,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF2B8EC1C78B31900F19FC6 /* MenuItems.plist in Resources */,
-				2DF2B84D1C78431E00F19FC6 /* YZPullDownMenu.xib in Resources */,
 				2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */,
 				2DF2B8C81C78463600F19FC6 /* MBProgressHUD.bundle in Resources */,
 				2DF2B8361C7842C100F19FC6 /* Assets.xcassets in Resources */,
@@ -503,12 +481,10 @@
 				2DF2B8E51C78463600F19FC6 /* LXWeakWrapper.m in Sources */,
 				2DF2B8C51C78463600F19FC6 /* NSString+LXExtension.m in Sources */,
 				2DF2B8E31C78463600F19FC6 /* LXMulticastDelegate.m in Sources */,
-				2DF2B8581C78462C00F19FC6 /* XXNibConvention.m in Sources */,
 				2DF2B8311C7842C100F19FC6 /* ViewController.m in Sources */,
 				2DF2B8E61C78463600F19FC6 /* LXRuntimeUtilities.m in Sources */,
 				2DF2B8CA1C78463600F19FC6 /* CATransaction+LXExtension.m in Sources */,
 				2DF2B8D31C78463600F19FC6 /* UIBezierPath+LXExtension.m in Sources */,
-				2DF2B8571C78462C00F19FC6 /* XXNibBridge.m in Sources */,
 				2DF2B8BB1C78463600F19FC6 /* NSObject+LXIntrospection.m in Sources */,
 				2DF2B8E21C78463600F19FC6 /* LXMigrationManager.m in Sources */,
 				2DF2B8CD1C78463600F19FC6 /* CATransaction+LXExtension.swift in Sources */,

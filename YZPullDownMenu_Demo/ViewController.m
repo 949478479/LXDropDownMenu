@@ -11,7 +11,8 @@
 
 @interface ViewController () <YZPullDownMenuDelegate>
 
-@property (nonatomic) NSArray<NSArray<NSString *> *> *items;
+@property (nonatomic) NSArray<NSString *> *sectionTitles;
+@property (nonatomic) NSArray<NSArray<NSString *> *> *itemTitles;
 @property (weak, nonatomic) IBOutlet YZPullDownMenu *pullDownMenu;
 @property (nonatomic) NSMutableDictionary *selectedItemsRecord;
 
@@ -23,7 +24,9 @@
 {
     [super viewDidLoad];
 
-    self.selectedItemsRecord = [NSMutableDictionary new];
+    // 修改字体大小
+    self.pullDownMenu.barButtonTextFont = [UIFont boldSystemFontOfSize:17];
+    self.pullDownMenu.itemTextFont = self.pullDownMenu.barButtonTextFont;
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,26 +35,62 @@
 
     if (self.isViewLoaded && !self.view.window) {
         self.view = nil;
-        self.items = nil;
+        self.itemTitles = nil;
+        self.sectionTitles = nil;
     }
 }
 
-- (NSArray<NSArray<NSString *> *> *)items
+- (NSArray<NSString *> *)sectionTitles
 {
-    if (!_items) {
-        _items = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuItems.plist" ofType:nil]];
+    if (!_sectionTitles) {
+        _sectionTitles = @[@"附近", @"排序", @"分类"];
     }
-    return _items;
+    return _sectionTitles;
 }
 
-- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemsForMenuInSection:(NSUInteger)section
+- (NSMutableDictionary *)selectedItemsRecord
 {
-    return self.items[section];;
+    if (!_selectedItemsRecord) {
+        _selectedItemsRecord = [NSMutableDictionary new];
+    }
+    return _selectedItemsRecord;
+}
+
+- (NSArray<NSArray<NSString *> *> *)itemTitles
+{
+    if (!_itemTitles) {
+        _itemTitles = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MenuItems.plist" ofType:nil]];
+    }
+    return _itemTitles;
+}
+
+- (IBAction)openMenu:(id)sender
+{
+    [self.pullDownMenu openMenuInSection:0];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.pullDownMenu closeMenu];
+    });
+}
+
+- (NSUInteger)numberOfSectionsInPullDownMenu:(YZPullDownMenu *)menu
+{
+    return self.sectionTitles.count;
+}
+
+- (NSArray<NSString *> *)sectionTitlesForPullDownMenu:(YZPullDownMenu *)menu
+{
+    return self.sectionTitles;
+}
+
+- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemTitlesForMenuInSection:(NSUInteger)section
+{
+    return self.itemTitles[section];;
 }
 
 - (void)pullDownMenu:(YZPullDownMenu *)menu didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@", self.items[indexPath.section][indexPath.row]);
+    NSLog(@"%@", self.itemTitles[indexPath.section][indexPath.row]);
 
     self.selectedItemsRecord[@(indexPath.section)] = indexPath;
 }
@@ -59,6 +98,11 @@
 - (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuInSection:(NSUInteger)section
 {
     [menu selectItemAtIndexPath:self.selectedItemsRecord[@(section)]];
+}
+
+- (void)pullDownMenu:(YZPullDownMenu *)menu didCloseMenuInSection:(NSUInteger)section
+{
+    NSLog(@"%@", self.sectionTitles[section]);
 }
 
 @end

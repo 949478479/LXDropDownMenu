@@ -3,112 +3,18 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" propertyAccessControl="all"/>
-        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder" propertyAccessControl="all"/>
-        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnh-rH-NE0" userLabel="Menu View Bar" customClass="YZPullDownMenu" propertyAccessControl="all">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-            <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ig3-Pj-5ac" customClass="__YZPullDownMenuBarButton">
-                    <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
-                    <state key="normal" title="附近" image="down_arrow">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="selected" image="up_arrow">
-                        <color key="titleColor" red="0.94117647058823528" green="0.29411764705882354" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="handleBarButtonDidTapped:" destination="rnh-rH-NE0" eventType="touchUpInside" id="wwu-7S-ttg"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPY-Yk-W7n" customClass="__YZPullDownMenuBarButton">
-                    <rect key="frame" x="125" y="0.0" width="125" height="44"/>
-                    <state key="normal" title="排序" image="down_arrow">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="selected" image="up_arrow">
-                        <color key="titleColor" red="0.94117647058823528" green="0.29411764705882354" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="handleBarButtonDidTapped:" destination="rnh-rH-NE0" eventType="touchUpInside" id="wxE-GF-SRq"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLJ-jR-QhZ" customClass="__YZPullDownMenuBarButton">
-                    <rect key="frame" x="251" y="0.0" width="124" height="44"/>
-                    <state key="normal" title="分类" image="down_arrow">
-                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="selected" image="up_arrow">
-                        <color key="titleColor" red="0.94117647059999998" green="0.29411764709999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="handleBarButtonDidTapped:" destination="rnh-rH-NE0" eventType="touchUpInside" id="H1r-ai-luz"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-D4-UUS" userLabel="Separator View" customClass="__YZPullDownMenuBarSeparatorView">
-                    <rect key="frame" x="124" y="7" width="1" height="30"/>
-                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="idT-UR-JFA"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eS4-FW-7vE" userLabel="Separator View" customClass="__YZPullDownMenuBarSeparatorView">
-                    <rect key="frame" x="250" y="7" width="1" height="30"/>
-                    <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="1" id="qMz-sa-Q6d"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNt-MJ-5Ja" userLabel="Separator View" customClass="__YZPullDownMenuBarSeparatorView">
-                    <rect key="frame" x="0.0" y="43" width="375" height="1"/>
-                    <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="Gnh-sV-MdV"/>
-                    </constraints>
-                </view>
-            </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="PNt-MJ-5Ja" firstAttribute="leading" secondItem="rnh-rH-NE0" secondAttribute="leading" id="5lP-tw-EFd"/>
-                <constraint firstItem="HPY-Yk-W7n" firstAttribute="top" secondItem="rnh-rH-NE0" secondAttribute="top" id="93U-Mq-itr"/>
-                <constraint firstItem="OlA-D4-UUS" firstAttribute="height" secondItem="rnh-rH-NE0" secondAttribute="height" multiplier="0.7" id="Bdp-ou-2OV"/>
-                <constraint firstItem="OlA-D4-UUS" firstAttribute="leading" secondItem="Ig3-Pj-5ac" secondAttribute="trailing" id="Csb-1c-Ir2"/>
-                <constraint firstAttribute="bottom" secondItem="KLJ-jR-QhZ" secondAttribute="bottom" id="E1R-mf-xUD"/>
-                <constraint firstItem="eS4-FW-7vE" firstAttribute="leading" secondItem="HPY-Yk-W7n" secondAttribute="trailing" id="Gn7-rc-SOX"/>
-                <constraint firstItem="Ig3-Pj-5ac" firstAttribute="leading" secondItem="rnh-rH-NE0" secondAttribute="leading" id="Q3T-hg-ffo"/>
-                <constraint firstItem="eS4-FW-7vE" firstAttribute="height" secondItem="OlA-D4-UUS" secondAttribute="height" id="SOv-oy-N6i"/>
-                <constraint firstAttribute="trailing" secondItem="KLJ-jR-QhZ" secondAttribute="trailing" id="UV9-gf-0FD"/>
-                <constraint firstItem="KLJ-jR-QhZ" firstAttribute="height" secondItem="Ig3-Pj-5ac" secondAttribute="height" id="WFb-RU-3NQ"/>
-                <constraint firstItem="HPY-Yk-W7n" firstAttribute="width" secondItem="Ig3-Pj-5ac" secondAttribute="width" id="WQ2-mA-AYH"/>
-                <constraint firstItem="KLJ-jR-QhZ" firstAttribute="top" secondItem="rnh-rH-NE0" secondAttribute="top" id="Xr8-Nv-jUu"/>
-                <constraint firstAttribute="bottom" secondItem="HPY-Yk-W7n" secondAttribute="bottom" id="alV-gn-qU3"/>
-                <constraint firstItem="HPY-Yk-W7n" firstAttribute="height" secondItem="Ig3-Pj-5ac" secondAttribute="height" id="eny-yH-wHK"/>
-                <constraint firstAttribute="bottom" secondItem="Ig3-Pj-5ac" secondAttribute="bottom" id="j3P-cV-iS6"/>
-                <constraint firstItem="eS4-FW-7vE" firstAttribute="centerY" secondItem="rnh-rH-NE0" secondAttribute="centerY" id="lVL-0Q-qnA"/>
-                <constraint firstItem="KLJ-jR-QhZ" firstAttribute="leading" secondItem="eS4-FW-7vE" secondAttribute="trailing" id="mUr-VC-Km8"/>
-                <constraint firstItem="Ig3-Pj-5ac" firstAttribute="top" secondItem="rnh-rH-NE0" secondAttribute="top" id="n3e-vi-rKp"/>
-                <constraint firstItem="OlA-D4-UUS" firstAttribute="centerY" secondItem="rnh-rH-NE0" secondAttribute="centerY" id="t2m-D6-FQQ"/>
-                <constraint firstItem="KLJ-jR-QhZ" firstAttribute="width" secondItem="Ig3-Pj-5ac" secondAttribute="width" id="uLl-PV-LgK"/>
-                <constraint firstAttribute="bottom" secondItem="PNt-MJ-5Ja" secondAttribute="bottom" id="v2F-On-QVV"/>
-                <constraint firstAttribute="trailing" secondItem="PNt-MJ-5Ja" secondAttribute="trailing" id="vwx-Dt-CkR"/>
-                <constraint firstItem="HPY-Yk-W7n" firstAttribute="leading" secondItem="OlA-D4-UUS" secondAttribute="trailing" id="wzB-om-5UW"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YZPullDownMenu" propertyAccessControl="all">
             <connections>
-                <outlet property="menuBackgroundView" destination="cEs-i5-Hsm" id="a1i-vc-dJi"/>
-                <outlet property="menuTableView" destination="Lqh-xb-c24" id="ne7-si-Lyi"/>
-                <outlet property="menuTableViewHeightConstraint" destination="Mi9-qg-PJd" id="XGq-Fg-FPs"/>
-                <outlet property="menuWrapperView" destination="zrw-6Q-heE" id="CCp-Qa-g7T"/>
-                <outletCollection property="menuBarButtons" destination="Ig3-Pj-5ac" id="iN7-aJ-J4E"/>
-                <outletCollection property="menuBarButtons" destination="HPY-Yk-W7n" id="FwT-OL-pwJ"/>
-                <outletCollection property="menuBarButtons" destination="KLJ-jR-QhZ" id="a5d-vm-uXR"/>
+                <outlet property="menuBackgroundView" destination="cEs-i5-Hsm" id="exm-HG-OHH"/>
+                <outlet property="menuTableView" destination="Lqh-xb-c24" id="WI3-1t-G0s"/>
+                <outlet property="menuTableViewHeightConstraint" destination="Mi9-qg-PJd" id="w9N-yz-Bh4"/>
+                <outlet property="menuWrapperView" destination="zrw-6Q-heE" id="Uuy-AY-NRP"/>
             </connections>
-            <point key="canvasLocation" x="627.5" y="-152"/>
-        </view>
-        <view contentMode="scaleToFill" id="zrw-6Q-heE" userLabel="Menu Wrapper View" customClass="__YZPullDownMenuWrapperView" propertyAccessControl="all">
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder" propertyAccessControl="all"/>
+        <view contentMode="scaleToFill" id="zrw-6Q-heE" userLabel="Menu Wrapper View" customClass="__YZPullDownMenuWrapperView" propertyAccessControl="none">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -130,8 +36,8 @@
                                 <constraint firstAttribute="height" constant="379" id="Mi9-qg-PJd"/>
                             </constraints>
                             <connections>
-                                <outlet property="dataSource" destination="rnh-rH-NE0" id="yxn-HX-CTp"/>
-                                <outlet property="delegate" destination="rnh-rH-NE0" id="iTd-a4-crL"/>
+                                <outlet property="dataSource" destination="-1" id="pKk-am-PSo"/>
+                                <outlet property="delegate" destination="-1" id="Gbc-HB-TNJ"/>
                             </connections>
                         </tableView>
                     </subviews>
@@ -160,14 +66,6 @@
             </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="627" y="208"/>
         </view>
-        <tapGestureRecognizer id="eQv-0V-fUE" propertyAccessControl="all">
-            <connections>
-                <action selector="menuBackgroundViewDidTapped:" destination="rnh-rH-NE0" id="ap2-8e-H0C"/>
-            </connections>
-        </tapGestureRecognizer>
+        <tapGestureRecognizer id="eQv-0V-fUE" propertyAccessControl="all"/>
     </objects>
-    <resources>
-        <image name="down_arrow" width="12" height="7"/>
-        <image name="up_arrow" width="12" height="7"/>
-    </resources>
 </document>

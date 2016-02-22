@@ -18,15 +18,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCr-2O-L0J">
-                                <rect key="frame" x="223" y="360" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="216" y="360" width="60" height="30"/>
+                                <state key="normal" title="打开菜单"/>
                                 <connections>
-                                    <segue destination="BnA-j1-9yt" kind="show" id="CPM-Fl-9FA"/>
+                                    <action selector="openMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="28H-y1-sgx"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3C-q3-dOY" customClass="YZPullDownMenu">
                                 <rect key="frame" x="0.0" y="64" width="320" height="35"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QBp-Xl-LhG"/>
                                 </constraints>
@@ -49,9 +49,12 @@
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedBackgroundColor">
                                         <color key="value" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="0.5" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
+                                        <color key="value" white="0.0" alpha="0.050000000000000003" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="rWb-tB-jOK"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Bwb-V6-DjQ"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -70,7 +73,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="pullDownMenu" destination="w3C-q3-dOY" id="eR9-9p-E9G"/>
+                        <outlet property="pullDownMenu" destination="w3C-q3-dOY" id="RMP-VI-kQZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -134,7 +137,7 @@
             </objects>
             <point key="canvasLocation" x="1137" y="387"/>
         </scene>
-        <!--Delegate-->
+        <!--View Controller-->
         <scene sceneID="oyn-qx-ozM">
             <objects>
                 <viewController id="BnA-j1-9yt" customClass="ViewController" sceneMemberID="viewController">
@@ -150,48 +153,16 @@
                                 <rect key="frame" x="223" y="360" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5E-kn-vFq" customClass="YZPullDownMenu">
-                                <rect key="frame" x="0.0" y="64" width="320" height="35"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="D70-c8-Tqp"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rowHeight">
-                                        <real key="value" value="35"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="maxVisibleRows">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="animationDuration">
-                                        <real key="value" value="0.40000000000000002"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="BnA-j1-9yt" id="VPo-at-bIz"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="v5E-kn-vFq" secondAttribute="trailing" id="ByD-0N-eaI"/>
-                            <constraint firstItem="v5E-kn-vFq" firstAttribute="top" secondItem="eAm-ug-fLr" secondAttribute="top" constant="64" id="Oyz-zD-J6g"/>
-                            <constraint firstItem="v5E-kn-vFq" firstAttribute="leading" secondItem="eAm-ug-fLr" secondAttribute="leading" id="mFG-ke-usM"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SgW-3n-JBk">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="8Ya-gc-U8H"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="pullDownMenu" destination="v5E-kn-vFq" id="Mad-JH-gCk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdM-hT-ybn" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2010" y="387"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="Lyo-SR-TN8"/>
-    </inferredMetricsTieBreakers>
 </document>
