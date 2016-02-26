@@ -30,12 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface YZPullDownMenu : UIView //<XXNibBridge>
+@interface YZPullDownMenu : UIView
 
-/// 菜单项文本字体
-@property (nullable, nonatomic) UIFont *itemTextFont;
-/// 菜单栏按钮文本字体
-@property (nullable, nonatomic) UIFont *barButtonTextFont;
+/// 菜单项文本字体,默认为 17.0 系统 字体
+@property (null_resettable, nonatomic) UIFont *itemTextFont;
+/// 菜单栏按钮文本字体,默认为 17.0 系统 字体
+@property (null_resettable, nonatomic) UIFont *barButtonTextFont;
 /// 菜单展开关闭动画时间
 @property (nonatomic) IBInspectable double animationDuration;
 /// 菜单单元格行高
@@ -61,8 +61,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 选中指定的菜单项，不会触发相关代理方法
 - (void)selectItemAtIndexPath:(NSIndexPath *)indexPath;
+
 /// 打开指定的菜单分组，会触发相关代理方法
 - (void)openMenuInSection:(NSUInteger)section;
+
 /// 关闭当前打开的菜单分组，会触发相关代理方法
 - (void)closeMenu;
 

@@ -54,7 +54,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Bwb-V6-DjQ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="49c-p2-Qhj"/>
                                 </connections>
                             </view>
                         </subviews>
