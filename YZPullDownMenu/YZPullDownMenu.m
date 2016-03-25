@@ -24,7 +24,7 @@
 
 #pragma mark - __YZPullDownMenuDimmingView -
 
-@interface __YZPullDownMenuDimmingView : UIView
+@interface __YZPullDownMenuDimmingView : UIControl
 @end
 @implementation __YZPullDownMenuDimmingView
 @end
@@ -42,16 +42,16 @@
 @end
 @implementation __YZPullDownMenuTableView
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    // 触摸点位于菜单表视图的内容范围内则让菜单表视图处理
-    CGRect contentRect = self.bounds;
-    contentRect.size.height = MIN(self.contentSize.height, contentRect.size.height);
-    if (CGRectContainsPoint(contentRect, point)) {
-        return self;
-    }
-    return nil;
-}
+//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    // 触摸点位于菜单表视图的内容范围内则让菜单表视图处理
+//    CGRect contentRect = self.bounds;
+//    contentRect.size.height = MIN(self.contentSize.height, contentRect.size.height);
+//    if (CGRectContainsPoint(contentRect, point)) {
+//        return self;
+//    }
+//    return nil;
+//}
 
 @end
 
@@ -109,10 +109,12 @@
 
 @interface YZPullDownMenu () <UITableViewDataSource, UITableViewDelegate>
 
+/// 是否应该刷新数据
+@property (nonatomic) BOOL shouldReloadData;
 /// 菜单是否打开
 @property (nonatomic, readwrite) BOOL isOpen;
 /// 当前打开的菜单分组
-@property (nonatomic, readwrite) NSUInteger currentSection;
+@property (nonatomic, readwrite) NSInteger currentSection;
 /// 菜单项标题
 @property (nonatomic, copy) NSArray<NSString *> *menuItemTitles;
 
@@ -123,10 +125,10 @@
 
 /// 菜单容器视图
 @property (nonatomic) __YZPullDownMenuWrapperView *menuWrapperView;
+/// 菜单表视图
+@property (nonatomic) __YZPullDownMenuTableView *menuTableView;
 /// 菜单背景视图
 @property (nonatomic, weak) __YZPullDownMenuDimmingView *menuDimmingView;
-/// 菜单表视图
-@property (nonatomic, weak) __YZPullDownMenuTableView *menuTableView;
 /// 菜单表视图高度约束
 @property (nonatomic, weak) NSLayoutConstraint *menuTableViewHeightConstraint;                                                       
 
@@ -140,14 +142,9 @@
     LXLog(@"%@ delloc", self);
 }
 
-#pragma mark - 添加菜单视图
+#pragma mark - 安装菜单栏和菜单
 
 - (void)didMoveToWindow
-{
-    [self addMenuViewToViewControllerViewIfNeeded];
-}
-
-- (void)addMenuViewToViewControllerViewIfNeeded
 {
     // 从窗口移除
     if (!self.window) {
@@ -161,78 +158,6 @@
 
     [self setupMenuBar];
     [self setupMenuView];
-
-    [self setupMenuBarAppearance];
-
-    UIViewController *viewController = self.lx_viewController;
-
-    self.menuWrapperView.hidden = YES;
-    [viewController.view addSubview:self.menuWrapperView];
-
-    // 上贴菜单栏，下贴选项卡或屏幕底部，左右紧贴窗口边缘
-    id menuView = self.menuWrapperView, bottomGuide = viewController.bottomLayoutGuide;
-    NSDictionary *views = NSDictionaryOfVariableBindings(self, menuView, bottomGuide);
-    NSString *visualFormats[] = { @"H:|[menuView]|", @"V:[self][menuView][bottomGuide]" };
-    for (uint i = 0; i < 2; ++i) {
-        [viewController.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
-                                                                        options:kNilOptions
-                                                                        metrics:nil
-                                                                          views:views]];
-    }
-}
-
-#pragma mark - 安装菜单栏和菜单
-
-- (void)setupMenuView
-{
-    // 菜单表视图
-    __YZPullDownMenuTableView *menuTableView = [__YZPullDownMenuTableView new];
-    menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    menuTableView.translatesAutoresizingMaskIntoConstraints = NO;
-    menuTableView.backgroundColor = [UIColor whiteColor];
-    menuTableView.dataSource = self;
-    menuTableView.delegate = self;
-    self.menuTableView = menuTableView;
-
-    // 菜单背景蒙版视图
-    __YZPullDownMenuDimmingView *menuDimmingView = [__YZPullDownMenuDimmingView new];
-    menuDimmingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
-    menuDimmingView.translatesAutoresizingMaskIntoConstraints = NO;
-    [menuDimmingView addGestureRecognizer:
-     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                             action:@selector(handleMenuDimmingViewDidTap:)]];
-    self.menuDimmingView = menuDimmingView;
-
-    // 菜单容器视图，即菜单表视图和菜单蒙版视图的父视图
-    __YZPullDownMenuWrapperView *menuWrapperView = [__YZPullDownMenuWrapperView new];
-    menuWrapperView.translatesAutoresizingMaskIntoConstraints = NO;
-    [menuWrapperView addSubview:menuDimmingView];
-    [menuWrapperView addSubview:menuTableView];
-    self.menuWrapperView = menuWrapperView;
-
-    // 蒙版视图四边紧贴容器视图，表视图上、左、右三边紧贴容器视图
-    NSDictionary *views = NSDictionaryOfVariableBindings(menuTableView, menuDimmingView);
-    NSString *visualFormats[] = {
-        @"H:|[menuDimmingView]|", @"V:|[menuDimmingView]|",
-        @"H:|[menuTableView]|", @"V:|[menuTableView]"
-    };
-    size_t count = sizeof(visualFormats) / sizeof(NSString *);
-    for (size_t i = 0; i < count; ++i) {
-        [menuWrapperView addConstraints:
-         [NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
-                                                 options:kNilOptions
-                                                 metrics:nil
-                                                   views:views]];
-    }
-
-    // 通过高度约束控制表视图高度
-    NSLayoutConstraint *menuTableViewHeightConstraint =
-    [NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuTableView(233)]"
-                                            options:kNilOptions
-                                            metrics:nil
-                                              views:views][0];
-    [menuTableView addConstraint:menuTableViewHeightConstraint];
-    self.menuTableViewHeightConstraint = menuTableViewHeightConstraint;
 }
 
 - (void)setupMenuBar
@@ -240,6 +165,7 @@
     [self setupMenuBarButtons];
     [self setupMenuBarVerticalSeparatorView];
     [self setupMenuBarBottomSeparatorView];
+    [self setupMenuBarAppearance];
 }
 
 - (void)setupMenuBarButtons
@@ -249,8 +175,8 @@
     UIImage *selectedImage = [[UIImage imageNamed:@"up_arrow"]
                               imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
-    NSArray *barButtonTitles = [self.delegate sectionTitlesForPullDownMenu:self];
-    NSUInteger numberOfSections = [self.delegate numberOfSectionsInPullDownMenu:self];
+    NSArray *barButtonTitles = [self.dataSource sectionTitlesForPullDownMenu:self];
+    NSUInteger numberOfSections = [self.dataSource numberOfSectionsInPullDownMenu:self];
     NSMutableArray *menuBarButtons = [NSMutableArray arrayWithCapacity:numberOfSections];
 
     for (NSUInteger i = 0; i < numberOfSections; ++i) {
@@ -261,14 +187,13 @@
             barButton.lx_selectedImage = selectedImage;
             barButton.lx_normalTitle = barButtonTitles[i];
             barButton.translatesAutoresizingMaskIntoConstraints = NO;
-
             [barButton addTarget:self
                           action:@selector(handleBarButtonDidTap:)
                 forControlEvents:UIControlEventTouchUpInside];
         }
 
-        menuBarButtons[i] = barButton;
         [self addSubview:barButton];
+        menuBarButtons[i] = barButton;
 
         NSDictionary *views = nil;
         if (i == 0) {
@@ -292,7 +217,7 @@
             visualFormats[1] = @"H:[barButton(previousBarButton)]";
         }
 
-        for (uint i = 0; i < 2; ++i) {
+        for (int i = 0; i < 2; ++i) {
             [self addConstraints:
              [NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
                                                      options:kNilOptions
@@ -326,8 +251,8 @@
         UIView *separatorView = [UIView new];
         separatorView.backgroundColor = self.separatorColor;
         separatorView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:separatorView];
         [separators addObject:separatorView];
+        [self addSubview:separatorView];
 
         UIButton *leftBarButton = barButton;
         UIButton *rightBarButton = self.menuBarButtons[idx + 1];
@@ -376,7 +301,7 @@
     NSString *visualFormats[] = {
         @"H:|[horizontalSeparatorView]|", @"V:[horizontalSeparatorView(1)]|"
     };
-    for (uint i = 0; i < 2; ++i) {
+    for (int i = 0; i < 2; ++i) {
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
                                                                      options:kNilOptions
                                                                      metrics:nil
@@ -384,12 +309,70 @@
     }
 }
 
-#pragma mark - 配置菜单外观
-
-- (UIFont *)itemTextFont
+- (__YZPullDownMenuTableView *)menuTableView
 {
-    return _itemTextFont ?: [UIFont systemFontOfSize:17.0];
+    if (!_menuTableView) {
+        _menuTableView = [__YZPullDownMenuTableView new];
+        _menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _menuTableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _menuTableView.backgroundColor = [UIColor whiteColor];
+        _menuTableView.dataSource = self;
+        _menuTableView.delegate = self;
+    }
+    return _menuTableView;
 }
+
+- (void)setupMenuView
+{
+    // 菜单背景蒙版视图
+    __YZPullDownMenuDimmingView *menuDimmingView = [__YZPullDownMenuDimmingView new];
+    menuDimmingView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.4];
+    menuDimmingView.translatesAutoresizingMaskIntoConstraints = NO;
+    [menuDimmingView addTarget:self
+                        action:@selector(handleMenuDimmingViewDidTap:)
+              forControlEvents:UIControlEventTouchUpInside];
+    self.menuDimmingView = menuDimmingView;
+
+    // 菜单容器视图，即菜单表视图和菜单蒙版视图的父视图
+    __YZPullDownMenuWrapperView *menuWrapperView = [__YZPullDownMenuWrapperView new];
+    menuWrapperView.translatesAutoresizingMaskIntoConstraints = NO;
+    menuWrapperView.hidden = YES;
+    self.menuWrapperView = menuWrapperView;
+
+    UIViewController *viewController = self.lx_viewController;
+    UIView *viewControllerView = viewController.view, *menuTableView = self.menuTableView;
+    
+    [menuWrapperView addSubview:menuDimmingView];
+    [menuWrapperView addSubview:menuTableView];
+    [viewControllerView addSubview:menuWrapperView];
+
+    // 容器视图上贴菜单栏，下贴选项卡或屏幕底部，左右紧贴窗口边缘，蒙版视图四边紧贴容器视图，表视图上、左、右三边紧贴容器视图
+    id<UILayoutSupport> bottomGuide = viewController.bottomLayoutGuide;
+    NSDictionary *views = NSDictionaryOfVariableBindings(self, bottomGuide, menuWrapperView, menuTableView, menuDimmingView);
+    NSString *visualFormats[] = {
+        @"H:|[menuWrapperView]|", @"V:[self][menuWrapperView][bottomGuide]",
+        @"H:|[menuDimmingView]|", @"V:|[menuDimmingView]|",
+        @"H:|[menuTableView]|"  , @"V:|[menuTableView]"
+    };
+    for (int i = 0; i < 6; ++i) {
+        [viewControllerView addConstraints:
+         [NSLayoutConstraint constraintsWithVisualFormat:visualFormats[i]
+                                                 options:kNilOptions
+                                                 metrics:nil
+                                                   views:views]];
+    }
+
+    // 通过高度约束控制表视图高度
+    NSLayoutConstraint *menuTableViewHeightConstraint =
+    [NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuTableView(233)]"
+                                            options:kNilOptions
+                                            metrics:nil
+                                              views:views][0];
+    [menuTableView addConstraint:menuTableViewHeightConstraint];
+    self.menuTableViewHeightConstraint = menuTableViewHeightConstraint;
+}
+
+#pragma mark - 配置菜单外观
 
 - (void)setBarButtonTextFont:(UIFont *)barButtonTextFont
 {
@@ -425,13 +408,6 @@
     [self.menuBarSeparatorViews setValue:separatorColor forKey:@"backgroundColor"];
 }
 
-- (void)setupMenuViewAppearance
-{
-    self.menuTableView.rowHeight = self.rowHeight;
-    CGFloat menuTableViewHeight = self.rowHeight * MIN(self.menuItemTitles.count, self.maxVisibleRows);
-    self.menuTableViewHeightConstraint.constant = menuTableViewHeight;
-}
-
 - (void)setupMenuBarAppearance
 {
     self.tintColor = self.normalColor; // 让所有菜单栏按钮标题和图片显示普通状态的颜色
@@ -451,6 +427,12 @@
     }
 }
 
+- (void)setupMenuViewHeight
+{
+    CGFloat menuHeight = [self.dataSource pullDownMenu:self heightForMenuInSection:self.currentSection];
+    self.menuTableViewHeightConstraint.constant = menuHeight;
+}
+
 #pragma mark - 菜单栏按钮点击处理
 
 - (void)handleBarButtonDidTap:(UIButton *)tappedButton
@@ -458,40 +440,33 @@
     // 在菜单动画结束前禁止交互
     self.userInteractionEnabled = NO;
     self.menuWrapperView.userInteractionEnabled = NO;
-
-    [self configureMenuItemsForTappedButton:tappedButton];
     [self switchMenuStateForTappedButton:tappedButton completion:^{
-
         self.userInteractionEnabled = YES;
         self.menuWrapperView.userInteractionEnabled = YES;
     }];
 }
 
-- (void)configureMenuItemsForTappedButton:(UIButton *)tappedButton
-{
-    // 被点击的菜单栏按钮已是选中状态，此时应该关闭菜单，而不是配置菜单项
-    if (tappedButton.selected) {
-        self.menuItemTitles = nil;
-        return;
-    }
-
-    // 找到被点击的菜单栏按钮，向数据源请求对应菜单所需的菜单内容
-    [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
-        if (buuton == tappedButton) {
-            *stop = YES;
-            self.currentSection = idx;
-            self.menuItemTitles = [self.delegate pullDownMenu:self itemTitlesForMenuInSection:idx];
-        }
-    }];
-}
-
 - (void)switchMenuStateForTappedButton:(UIButton *)tappedButton completion:(void (^)(void))completion
 {
+    // 被点击的按钮未被选中，说明打开了新的菜单分组
+    if (!tappedButton.selected) {
+        [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *buuton, NSUInteger idx, BOOL *stop) {
+            if (buuton == tappedButton) {
+                *stop = YES;
+                self.currentSection = idx;
+            }
+        }];
+    }
+
     if (self.isOpen) {
 
         if (!tappedButton.selected) { // 点击了其它菜单栏按钮，刷新菜单内容
 
-            [self setupMenuViewAppearance];
+            CGFloat menuHeight = [self.dataSource pullDownMenu:self
+                                        heightForMenuInSection:self.currentSection];
+            self.menuTableViewHeightConstraint.constant = menuHeight;
+
+            self.shouldReloadData = YES;
             [self.menuTableView reloadData];
 
             if ([self.delegate respondsToSelector:@selector(pullDownMenu:willOpenMenuInSection:)]) {
@@ -516,10 +491,12 @@
                 self.menuWrapperView.hidden = YES;
                 self.menuTableViewHeightConstraint.constant = height;
 
-                if ([self.delegate respondsToSelector:@selector(pullDownMenu:didCloseMenuInSection:)]) {
-                    [self.delegate pullDownMenu:self didCloseMenuInSection:self.currentSection];
-                }
+                NSInteger currentSection = self.currentSection;
                 self.currentSection = NSNotFound;
+                
+                if ([self.delegate respondsToSelector:@selector(pullDownMenu:didCloseMenuInSection:)]) {
+                    [self.delegate pullDownMenu:self didCloseMenuInSection:currentSection];
+                }
 
                 completion();
             }];
@@ -527,18 +504,18 @@
 
     } else { // 菜单由关闭状态被打开，刷新菜单内容
 
-        [self setupMenuViewAppearance];
-
         self.menuWrapperView.hidden = NO;
         self.menuDimmingView.alpha = 0.0;
-        CGFloat height = self.menuTableViewHeightConstraint.constant;
         self.menuTableViewHeightConstraint.constant = 0.0;
         [self.menuWrapperView layoutIfNeeded];
+
+        CGFloat menuHeight = [self.dataSource pullDownMenu:self
+                                    heightForMenuInSection:self.currentSection];
 
         [UIView animateWithDuration:self.animationDuration animations:^{
 
             self.menuDimmingView.alpha = 1.0;
-            self.menuTableViewHeightConstraint.constant = height;
+            self.menuTableViewHeightConstraint.constant = menuHeight;
             [self.menuWrapperView layoutIfNeeded];
 
         } completion:^(BOOL finished) {
@@ -547,6 +524,7 @@
             completion();
         }];
 
+        self.shouldReloadData = YES;
         [self.menuTableView reloadData];
 
         if ([self.delegate respondsToSelector:@selector(pullDownMenu:willOpenMenuInSection:)]) {
@@ -577,42 +555,36 @@
     }
 }
 
-#pragma mark - UITableViewDataSource
+#pragma mark - <UITableViewDataSource, UITableViewDelegate>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.menuItemTitles.count;
+    if (!self.shouldReloadData) {
+        return 0;
+    }
+    return [self.dataSource pullDownMenu:self numberOfRowsInSection:self.currentSection];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *const reuseIdentifier = @"UITableViewCell";
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:reuseIdentifier];
-        cell.selectedBackgroundView = [UIView new];
-    }
-
-    cell.textLabel.text = self.menuItemTitles[indexPath.row];
-    cell.textLabel.font = self.itemTextFont;
-    cell.textLabel.textColor = self.normalColor;
-    cell.textLabel.highlightedTextColor = self.selectedColor;
-    cell.selectedBackgroundView.backgroundColor = self.selectedBackgroundColor;
-
-    return cell;
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
+    return [self.dataSource pullDownMenu:self cellForRowAtIndexPath:indexPath];
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // 不允许重复选中同一行
-    if ([[tableView indexPathsForSelectedRows].firstObject isEqual:indexPath]) {
-        return nil;
-    }
-    return indexPath;
+    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
+    return [self.dataSource pullDownMenu:self heightForRowAtIndexPath:indexPath];
 }
+
+//- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // 不允许重复选中同一行
+//    if ([[tableView indexPathsForSelectedRows].firstObject isEqual:indexPath]) {
+//        return nil;
+//    }
+//    return indexPath;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -620,7 +592,8 @@
         [self.menuBarButtons enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
             if (button.selected) {
                 *stop = YES;
-                NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:idx];
+                NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row
+                                                             inSection:self.currentSection];
                 [self.delegate pullDownMenu:self didSelectItemAtIndexPath:_indexPath];
             }
         }];
@@ -652,6 +625,23 @@
 - (void)closeMenu
 {
     [self handleMenuDimmingViewDidTap:nil];
+}
+
+#pragma mark - UITableView 方法包装
+
+- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier
+{
+    [self.menuTableView registerNib:nib forCellReuseIdentifier:identifier];
+}
+
+- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier
+{
+    [self.menuTableView registerClass:cellClass forCellReuseIdentifier:identifier];
+}
+
+- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier
+{
+    return [self.menuTableView dequeueReusableCellWithIdentifier:identifier];
 }
 
 @end

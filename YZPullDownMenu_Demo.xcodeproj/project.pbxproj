@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D4664B81C9FB97100B7953A /* YZScoreRangeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4664B61C9FB97100B7953A /* YZScoreRangeCell.m */; };
+		2D4664B91C9FB97100B7953A /* YZScoreRangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D4664B71C9FB97100B7953A /* YZScoreRangeCell.xib */; };
 		2DF2B82B1C7842C100F19FC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B82A1C7842C100F19FC6 /* main.m */; };
 		2DF2B82E1C7842C100F19FC6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B82D1C7842C100F19FC6 /* AppDelegate.m */; };
 		2DF2B8311C7842C100F19FC6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8301C7842C100F19FC6 /* ViewController.m */; };
@@ -63,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D4664B51C9FB97100B7953A /* YZScoreRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZScoreRangeCell.h; sourceTree = "<group>"; };
+		2D4664B61C9FB97100B7953A /* YZScoreRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZScoreRangeCell.m; sourceTree = "<group>"; };
+		2D4664B71C9FB97100B7953A /* YZScoreRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YZScoreRangeCell.xib; sourceTree = "<group>"; };
 		2DF2B8261C7842C000F19FC6 /* YZPullDownMenu_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YZPullDownMenu_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF2B82A1C7842C100F19FC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2DF2B82C1C7842C100F19FC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -201,6 +206,9 @@
 				2DF2B82D1C7842C100F19FC6 /* AppDelegate.m */,
 				2DF2B82F1C7842C100F19FC6 /* ViewController.h */,
 				2DF2B8301C7842C100F19FC6 /* ViewController.m */,
+				2D4664B51C9FB97100B7953A /* YZScoreRangeCell.h */,
+				2D4664B61C9FB97100B7953A /* YZScoreRangeCell.m */,
+				2D4664B71C9FB97100B7953A /* YZScoreRangeCell.xib */,
 				2DF2B8321C7842C100F19FC6 /* Main.storyboard */,
 				2DF2B8351C7842C100F19FC6 /* Assets.xcassets */,
 				2DF2B8371C7842C100F19FC6 /* LaunchScreen.storyboard */,
@@ -452,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF2B8EC1C78B31900F19FC6 /* MenuItems.plist in Resources */,
+				2D4664B91C9FB97100B7953A /* YZScoreRangeCell.xib in Resources */,
 				2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */,
 				2DF2B8C81C78463600F19FC6 /* MBProgressHUD.bundle in Resources */,
 				2DF2B8361C7842C100F19FC6 /* Assets.xcassets in Resources */,
@@ -511,6 +520,7 @@
 				2DF2B8CF1C78463600F19FC6 /* CGAffineTransform+LXExtension.swift in Sources */,
 				2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */,
 				2DF2B8DD1C78463600F19FC6 /* UIWindow+LXExtension.m in Sources */,
+				2D4664B81C9FB97100B7953A /* YZScoreRangeCell.m in Sources */,
 				2DF2B8DB1C78463600F19FC6 /* UIView+LXExtension.m in Sources */,
 				2DF2B8BC1C78463600F19FC6 /* NSArray+LXExtension.m in Sources */,
 				2DF2B8D41C78463600F19FC6 /* UIButton+LXExtension.m in Sources */,

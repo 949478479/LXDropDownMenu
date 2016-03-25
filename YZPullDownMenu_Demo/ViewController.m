@@ -6,10 +6,12 @@
 //  Copyright © 2016年 从今以后. All rights reserved.
 //
 
+#import "LXUtilities.h"
 #import "ViewController.h"
 #import "YZPullDownMenu.h"
+#import "YZScoreRangeCell.h"
 
-@interface ViewController () <YZPullDownMenuDelegate>
+@interface ViewController () <YZPullDownMenuDelegate, YZPullDownMenuDataSource>
 
 @property (nonatomic) NSArray<NSString *> *sectionTitles;
 @property (nonatomic) NSArray<NSArray<NSString *> *> *itemTitles;
@@ -26,7 +28,8 @@
 
     // 修改字体大小
     self.pullDownMenu.barButtonTextFont = [UIFont boldSystemFontOfSize:17];
-    self.pullDownMenu.itemTextFont = self.pullDownMenu.barButtonTextFont;
+
+    [self.pullDownMenu registerNib:[YZScoreRangeCell lx_nib] forCellReuseIdentifier:@"YZScoreRangeCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +46,7 @@
 - (NSArray<NSString *> *)sectionTitles
 {
     if (!_sectionTitles) {
-        _sectionTitles = @[@"附近", @"排序", @"分类"];
+        _sectionTitles = @[@"附近", @"排序", @"分类", @"积分"];
     }
     return _sectionTitles;
 }
@@ -73,9 +76,19 @@
     });
 }
 
-- (NSUInteger)numberOfSectionsInPullDownMenu:(YZPullDownMenu *)menu
+#pragma mark - <YZPullDownMenuDataSource>
+
+- (NSInteger)numberOfSectionsInPullDownMenu:(YZPullDownMenu *)menu
 {
-    return self.sectionTitles.count;
+    return 4;
+}
+
+- (NSInteger)pullDownMenu:(YZPullDownMenu *)menu numberOfRowsInSection:(NSInteger)section
+{
+    if (section < 3) {
+        return self.itemTitles[section].count;
+    }
+    return 2;
 }
 
 - (NSArray<NSString *> *)sectionTitlesForPullDownMenu:(YZPullDownMenu *)menu
@@ -83,10 +96,61 @@
     return self.sectionTitles;
 }
 
-- (NSArray<NSString *> *)pullDownMenu:(YZPullDownMenu *)menu itemTitlesForMenuInSection:(NSUInteger)section
+- (UITableViewCell *)pullDownMenu:(YZPullDownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.itemTitles[section];;
+    static NSString *const reuseIdentifier = @"UITableViewCell";
+
+    if (indexPath.section == 3) {
+        if (indexPath.row == 1) {
+            return [menu dequeueReusableCellWithIdentifier:@"YZScoreRangeCell"];
+        }
+    }
+
+    UITableViewCell *cell = [menu dequeueReusableCellWithIdentifier:reuseIdentifier];
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:reuseIdentifier];
+        cell.selectedBackgroundView = [UIView new];
+    }
+
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    cell.textLabel.textColor = [UIColor lightGrayColor];
+    cell.textLabel.highlightedTextColor = [UIColor orangeColor];
+    cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
+
+    if (indexPath.section == 3 && indexPath.row == 0) {
+        cell.textLabel.text = @"全部";
+    } else {
+        cell.textLabel.text = self.itemTitles[indexPath.section][indexPath.row];
+    }
+
+    return cell;
 }
+
+- (CGFloat)pullDownMenu:(YZPullDownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 3) {
+        if (indexPath.row == 0) {
+            return 44.0;
+        }
+        return 162.0;
+    }
+    return 44.0;
+}
+
+- (CGFloat)pullDownMenu:(YZPullDownMenu *)menu heightForMenuInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0: return 44 * 10;
+        case 1: return 44 * 3;
+        case 2: return 44 * 10;
+        case 3: return 44 + 162;
+    }
+    return 233;
+}
+
+#pragma mark - <YZPullDownMenuDelegate>
 
 - (void)pullDownMenu:(YZPullDownMenu *)menu didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -95,12 +159,12 @@
     self.selectedItemsRecord[@(indexPath.section)] = indexPath;
 }
 
-- (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuInSection:(NSUInteger)section
+- (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuInSection:(NSInteger)section
 {
     [menu selectItemAtIndexPath:self.selectedItemsRecord[@(section)]];
 }
 
-- (void)pullDownMenu:(YZPullDownMenu *)menu didCloseMenuInSection:(NSUInteger)section
+- (void)pullDownMenu:(YZPullDownMenu *)menu didCloseMenuInSection:(NSInteger)section
 {
     NSLog(@"%@", self.sectionTitles[section]);
 }
