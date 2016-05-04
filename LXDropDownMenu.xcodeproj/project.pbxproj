@@ -15,7 +15,7 @@
 		2DF2B8341C7842C100F19FC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8321C7842C100F19FC6 /* Main.storyboard */; };
 		2DF2B8361C7842C100F19FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8351C7842C100F19FC6 /* Assets.xcassets */; };
 		2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8371C7842C100F19FC6 /* LaunchScreen.storyboard */; };
-		2DF2B84C1C78431E00F19FC6 /* YZPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */; };
+		2DF2B84C1C78431E00F19FC6 /* LXDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */; };
 		2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */; };
 		2DF2B8BB1C78463600F19FC6 /* NSObject+LXIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8601C78463600F19FC6 /* NSObject+LXIntrospection.m */; };
 		2DF2B8BC1C78463600F19FC6 /* NSArray+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8621C78463600F19FC6 /* NSArray+LXExtension.m */; };
@@ -68,7 +68,7 @@
 		2D4664B51C9FB97100B7953A /* YZScoreRangeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZScoreRangeCell.h; sourceTree = "<group>"; };
 		2D4664B61C9FB97100B7953A /* YZScoreRangeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZScoreRangeCell.m; sourceTree = "<group>"; };
 		2D4664B71C9FB97100B7953A /* YZScoreRangeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YZScoreRangeCell.xib; sourceTree = "<group>"; };
-		2DF2B8261C7842C000F19FC6 /* YZPullDownMenu_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YZPullDownMenu_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DF2B8261C7842C000F19FC6 /* LXDropDownMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LXDropDownMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF2B82A1C7842C100F19FC6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2DF2B82C1C7842C100F19FC6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2DF2B82D1C7842C100F19FC6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,8 +78,8 @@
 		2DF2B8351C7842C100F19FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DF2B8381C7842C100F19FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DF2B83A1C7842C100F19FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2DF2B8411C78431E00F19FC6 /* YZPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZPullDownMenu.h; sourceTree = "<group>"; };
-		2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZPullDownMenu.m; sourceTree = "<group>"; };
+		2DF2B8411C78431E00F19FC6 /* LXDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDropDownMenu.h; sourceTree = "<group>"; };
+		2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDropDownMenu.m; sourceTree = "<group>"; };
 		2DF2B85C1C78463600F19FC6 /* GCD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCD+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCD+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B85F1C78463600F19FC6 /* NSObject+LXIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXIntrospection.h"; sourceTree = "<group>"; };
@@ -185,8 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				2DF2B8591C78463600F19FC6 /* LXUtilities */,
-				2DF2B8401C78431E00F19FC6 /* YZPullDownMenu */,
-				2DF2B8281C7842C000F19FC6 /* YZPullDownMenu_Demo */,
+				2DF2B8401C78431E00F19FC6 /* LXDropDownMenu */,
+				2DF2B8281C7842C000F19FC6 /* LXDropDownMenu_Demo */,
 				2DF2B8271C7842C000F19FC6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,12 +194,12 @@
 		2DF2B8271C7842C000F19FC6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2DF2B8261C7842C000F19FC6 /* YZPullDownMenu_Demo.app */,
+				2DF2B8261C7842C000F19FC6 /* LXDropDownMenu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2DF2B8281C7842C000F19FC6 /* YZPullDownMenu_Demo */ = {
+		2DF2B8281C7842C000F19FC6 /* LXDropDownMenu_Demo */ = {
 			isa = PBXGroup;
 			children = (
 				2DF2B82C1C7842C100F19FC6 /* AppDelegate.h */,
@@ -216,7 +216,7 @@
 				2DF2B8EB1C78B31900F19FC6 /* MenuItems.plist */,
 				2DF2B8291C7842C000F19FC6 /* Supporting Files */,
 			);
-			path = YZPullDownMenu_Demo;
+			path = LXDropDownMenu_Demo;
 			sourceTree = "<group>";
 		};
 		2DF2B8291C7842C000F19FC6 /* Supporting Files */ = {
@@ -227,13 +227,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2DF2B8401C78431E00F19FC6 /* YZPullDownMenu */ = {
+		2DF2B8401C78431E00F19FC6 /* LXDropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
-				2DF2B8411C78431E00F19FC6 /* YZPullDownMenu.h */,
-				2DF2B8421C78431E00F19FC6 /* YZPullDownMenu.m */,
+				2DF2B8411C78431E00F19FC6 /* LXDropDownMenu.h */,
+				2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */,
 			);
-			path = YZPullDownMenu;
+			path = LXDropDownMenu;
 			sourceTree = "<group>";
 		};
 		2DF2B8591C78463600F19FC6 /* LXUtilities */ = {
@@ -405,9 +405,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2DF2B8251C7842C000F19FC6 /* YZPullDownMenu_Demo */ = {
+		2DF2B8251C7842C000F19FC6 /* LXDropDownMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2DF2B83D1C7842C100F19FC6 /* Build configuration list for PBXNativeTarget "YZPullDownMenu_Demo" */;
+			buildConfigurationList = 2DF2B83D1C7842C100F19FC6 /* Build configuration list for PBXNativeTarget "LXDropDownMenu" */;
 			buildPhases = (
 				2DF2B8221C7842C000F19FC6 /* Sources */,
 				2DF2B8231C7842C000F19FC6 /* Frameworks */,
@@ -417,9 +417,9 @@
 			);
 			dependencies = (
 			);
-			name = YZPullDownMenu_Demo;
+			name = LXDropDownMenu;
 			productName = YZPullDownMenu_Demo;
-			productReference = 2DF2B8261C7842C000F19FC6 /* YZPullDownMenu_Demo.app */;
+			productReference = 2DF2B8261C7842C000F19FC6 /* LXDropDownMenu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -436,7 +436,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2DF2B8211C7842C000F19FC6 /* Build configuration list for PBXProject "YZPullDownMenu_Demo" */;
+			buildConfigurationList = 2DF2B8211C7842C000F19FC6 /* Build configuration list for PBXProject "LXDropDownMenu" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -449,7 +449,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2DF2B8251C7842C000F19FC6 /* YZPullDownMenu_Demo */,
+				2DF2B8251C7842C000F19FC6 /* LXDropDownMenu */,
 			);
 		};
 /* End PBXProject section */
@@ -478,7 +478,7 @@
 				2DF2B8E41C78463600F19FC6 /* LXTimer.m in Sources */,
 				2DF2B8DA1C78463600F19FC6 /* UITextView+LXExtension.m in Sources */,
 				2DF2B8CC1C78463600F19FC6 /* CALayer+LXExtension.swift in Sources */,
-				2DF2B84C1C78431E00F19FC6 /* YZPullDownMenu.m in Sources */,
+				2DF2B84C1C78431E00F19FC6 /* LXDropDownMenu.m in Sources */,
 				2DF2B8C91C78463600F19FC6 /* CALayer+LXExtension.m in Sources */,
 				2DF2B8D91C78463600F19FC6 /* UITextField+LXExtension.m in Sources */,
 				2DF2B8C11C78463600F19FC6 /* NSFileManager+LXExtension.m in Sources */,
@@ -634,29 +634,29 @@
 		2DF2B83E1C7842C100F19FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = YZPullDownMenu_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = LXDropDownMenu_Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjyh.YZPullDownMenu-Demo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXDropDownMenuDemo;
+				PRODUCT_NAME = LXDropDownMenu;
 			};
 			name = Debug;
 		};
 		2DF2B83F1C7842C100F19FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = YZPullDownMenu_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INFOPLIST_FILE = LXDropDownMenu_Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cjyh.YZPullDownMenu-Demo";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXDropDownMenuDemo;
+				PRODUCT_NAME = LXDropDownMenu;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2DF2B8211C7842C000F19FC6 /* Build configuration list for PBXProject "YZPullDownMenu_Demo" */ = {
+		2DF2B8211C7842C000F19FC6 /* Build configuration list for PBXProject "LXDropDownMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DF2B83B1C7842C100F19FC6 /* Debug */,
@@ -665,7 +665,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2DF2B83D1C7842C100F19FC6 /* Build configuration list for PBXNativeTarget "YZPullDownMenu_Demo" */ = {
+		2DF2B83D1C7842C100F19FC6 /* Build configuration list for PBXNativeTarget "LXDropDownMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DF2B83E1C7842C100F19FC6 /* Debug */,

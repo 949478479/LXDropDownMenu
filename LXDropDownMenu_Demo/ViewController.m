@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  YZPullDownMenu_Demo
+//  LXDropDownMenu_Demo
 //
 //  Created by 从今以后 on 16/2/20.
 //  Copyright © 2016年 从今以后. All rights reserved.
@@ -8,14 +8,14 @@
 
 #import "LXUtilities.h"
 #import "ViewController.h"
-#import "YZPullDownMenu.h"
+#import "LXDropDownMenu.h"
 #import "YZScoreRangeCell.h"
 
-@interface ViewController () <YZPullDownMenuDelegate, YZPullDownMenuDataSource>
+@interface ViewController () <LXDropDownMenuDelegate, LXDropDownMenuDataSource>
 
 @property (nonatomic) NSArray<NSString *> *sectionTitles;
 @property (nonatomic) NSArray<NSArray<NSString *> *> *itemTitles;
-@property (weak, nonatomic) IBOutlet YZPullDownMenu *pullDownMenu;
+@property (weak, nonatomic) IBOutlet LXDropDownMenu *dropDownMenu;
 @property (nonatomic) NSMutableDictionary *selectedItemsRecord;
 
 @end
@@ -27,9 +27,9 @@
     [super viewDidLoad];
 
     // 修改字体大小
-    self.pullDownMenu.barButtonTextFont = [UIFont boldSystemFontOfSize:17];
+    self.dropDownMenu.barButtonTextFont = [UIFont boldSystemFontOfSize:17];
 
-    [self.pullDownMenu registerNib:[YZScoreRangeCell lx_nib] forCellReuseIdentifier:@"YZScoreRangeCell"];
+    [self.dropDownMenu registerNib:[YZScoreRangeCell lx_nib] forCellReuseIdentifier:@"YZScoreRangeCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,21 +69,17 @@
 
 - (IBAction)openMenu:(id)sender
 {
-    [self.pullDownMenu openMenuInSection:0];
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.pullDownMenu closeMenu];
-    });
+    [self.dropDownMenu openMenuInSection:0];
 }
 
-#pragma mark - <YZPullDownMenuDataSource>
+#pragma mark - <LXDropDownMenuDataSource>
 
-- (NSInteger)numberOfSectionsInPullDownMenu:(YZPullDownMenu *)menu
+- (NSInteger)numberOfSectionsInDropDownMenu:(LXDropDownMenu *)menu
 {
     return 4;
 }
 
-- (NSInteger)pullDownMenu:(YZPullDownMenu *)menu numberOfRowsInSection:(NSInteger)section
+- (NSInteger)dropDownMenu:(LXDropDownMenu *)menu numberOfRowsInSection:(NSInteger)section
 {
     if (section < 3) {
         return self.itemTitles[section].count;
@@ -91,12 +87,12 @@
     return 2;
 }
 
-- (NSArray<NSString *> *)sectionTitlesForPullDownMenu:(YZPullDownMenu *)menu
+- (NSArray<NSString *> *)sectionTitlesForDropDownMenu:(LXDropDownMenu *)menu
 {
     return self.sectionTitles;
 }
 
-- (UITableViewCell *)pullDownMenu:(YZPullDownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)dropDownMenu:(LXDropDownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *const reuseIdentifier = @"UITableViewCell";
 
@@ -117,7 +113,7 @@
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
     cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.highlightedTextColor = [UIColor orangeColor];
-    cell.selectedBackgroundView.backgroundColor = [UIColor lightGrayColor];
+    cell.selectedBackgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     if (indexPath.section == 3 && indexPath.row == 0) {
         cell.textLabel.text = @"全部";
@@ -128,7 +124,7 @@
     return cell;
 }
 
-- (CGFloat)pullDownMenu:(YZPullDownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)dropDownMenu:(LXDropDownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -139,7 +135,7 @@
     return 44.0;
 }
 
-- (CGFloat)pullDownMenu:(YZPullDownMenu *)menu heightForMenuInSection:(NSInteger)section
+- (CGFloat)dropDownMenu:(LXDropDownMenu *)menu heightForMenuInSection:(NSInteger)section
 {
     switch (section) {
         case 0: return 44 * 10;
@@ -150,21 +146,23 @@
     return 233;
 }
 
-#pragma mark - <YZPullDownMenuDelegate>
+#pragma mark - <LXDropDownMenuDelegate>
 
-- (void)pullDownMenu:(YZPullDownMenu *)menu didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)dropDownMenu:(LXDropDownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%@", self.itemTitles[indexPath.section][indexPath.row]);
 
     self.selectedItemsRecord[@(indexPath.section)] = indexPath;
+
+    [menu closeMenu];
 }
 
-- (void)pullDownMenu:(YZPullDownMenu *)menu willOpenMenuInSection:(NSInteger)section
+- (void)dropDownMenu:(LXDropDownMenu *)menu willOpenMenuInSection:(NSInteger)section
 {
-    [menu selectItemAtIndexPath:self.selectedItemsRecord[@(section)]];
+    [menu selectRowAtIndexPath:self.selectedItemsRecord[@(section)] animated:NO];
 }
 
-- (void)pullDownMenu:(YZPullDownMenu *)menu didCloseMenuInSection:(NSInteger)section
+- (void)dropDownMenu:(LXDropDownMenu *)menu didCloseMenuInSection:(NSInteger)section
 {
     NSLog(@"%@", self.sectionTitles[section]);
 }
