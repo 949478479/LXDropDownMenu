@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 即将打开（切换）菜单分组，可在此方法中选中指定行，在此方法中更换数据源内容没有效果
 - (void)dropDownMenu:(LXDropDownMenu *)menu willOpenMenuInSection:(NSInteger)section;
-/// 已经打开菜单分组
+/// 已经打开菜单分组，只是切换菜单分组时不会调用此方法
 - (void)dropDownMenu:(LXDropDownMenu *)menu didOpenMenuInSection:(NSInteger)section;
 /// 即将关闭菜单分组
 - (void)dropDownMenu:(LXDropDownMenu *)menu willCloseMenuInSection:(NSInteger)section;
@@ -63,10 +63,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) IBInspectable UIColor *normalColor;
 /// 菜单栏按钮标题和图片在选中状态下的颜色，默认使用 tintColor
 @property (nonatomic) IBInspectable UIColor *selectedColor;
+
+/// 是否隐藏菜单表视图的分隔线，默认不隐藏
+@property (nonatomic) IBInspectable BOOL hiddenSeparator;
 /// 菜单栏分隔线颜色，默认为 alpha 为 0.1 的黑色
 @property (nonatomic) IBInspectable UIColor *separatorColor;
 /// 背景蒙版颜色，默认为 alpha 为 0.5 的黑色
 @property (nonatomic) IBInspectable UIColor *dimmingColor;
+/// 菜单背景色，默认为白色
+@property (nonatomic) IBInspectable UIColor *tableViewBgColor;
 
 /// 菜单是否打开
 @property (nonatomic, readonly) BOOL isOpen;

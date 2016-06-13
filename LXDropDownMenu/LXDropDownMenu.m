@@ -129,6 +129,7 @@
     _animationDuration = 0.25;
     _selectedColor = self.tintColor;
     _normalColor = [UIColor blackColor];
+    _tableViewBgColor = [UIColor whiteColor];
     _barButtonTextFont = [UIFont systemFontOfSize:17.0];
     _separatorColor = [UIColor colorWithWhite:0.0 alpha:0.1];
     _dimmingColor = [UIColor colorWithWhite:0.0 alpha:0.5];
@@ -310,11 +311,12 @@
     // 表视图使用懒加载是为了注册单元格时保证能获取到表视图
     if (!_menuTableView) {
         _menuTableView = [__LXDropDownMenuTableView new];
-        _menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _menuTableView.translatesAutoresizingMaskIntoConstraints = NO;
-        _menuTableView.backgroundColor = [UIColor whiteColor];
-        _menuTableView.dataSource = self;
         _menuTableView.delegate = self;
+        _menuTableView.dataSource = self;
+        _menuTableView.backgroundColor = self.tableViewBgColor;
+        _menuTableView.separatorStyle = self.hiddenSeparator ? 0 : 1;
+        _menuTableView.translatesAutoresizingMaskIntoConstraints = NO;
+        _menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
     }
     return _menuTableView;
 }
@@ -414,6 +416,20 @@
     _dimmingColor = dimmingColor;
 
     self.menuDimmingView.backgroundColor = dimmingColor;
+}
+
+- (void)setTableViewBgColor:(UIColor *)tableViewBgColor
+{
+    _tableViewBgColor = tableViewBgColor;
+
+    _menuTableView.backgroundColor = tableViewBgColor;
+}
+
+- (void)setHiddenSeparator:(BOOL)hiddenSeparator
+{
+    _hiddenSeparator = hiddenSeparator;
+
+    _menuTableView.separatorStyle = hiddenSeparator ? 0 : 1;
 }
 
 - (void)setupMenuBarAppearance
