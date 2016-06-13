@@ -47,6 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)dropDownMenu:(LXDropDownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 /// 已经选中指定行，适用于当前展开的菜单分组
 - (void)dropDownMenu:(LXDropDownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+/// 是否可以选中指定行
+- (BOOL)dropDownMenu:(LXDropDownMenu *)menu shouldDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 /// 已经取消选中指定行，适用于当前展开的菜单分组
 - (void)dropDownMenu:(LXDropDownMenu *)menu didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 
@@ -75,7 +77,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 菜单是否打开
 @property (nonatomic, readonly) BOOL isOpen;
-/// 当前打开的菜单分组，若没有打开的菜单，则该值为 NSNotFound
+/// 当前已打开的菜单分组，若没有打开的菜单，则该值为 NSNotFound
 @property (nonatomic, readonly) NSInteger currentSection;
 
 /// 菜单代理
@@ -95,10 +97,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// 选中指定行，不会触发相关代理方法，只应在菜单即将打开或完全打开后调用
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+- (void)selectRowAtIndex:(NSInteger)index animated:(BOOL)animated;
 
 /// 取消选中指定行，不会触发相关代理方法，只应在菜单即将打开或完全打开后调用
-- (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+- (void)deselectRowAtIndex:(NSInteger)index animated:(BOOL)animated;
 
 /// 打开指定的菜单分组，会触发相关代理方法
 - (void)openMenuInSection:(NSUInteger)section;

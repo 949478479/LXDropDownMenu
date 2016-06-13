@@ -621,9 +621,21 @@
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
     if ([self.delegate respondsToSelector:@selector(dropDownMenu:shouldSelectRowAtIndexPath:)]) {
+        NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
         if ([self.delegate dropDownMenu:self shouldSelectRowAtIndexPath:_indexPath]) {
+            return indexPath;
+        }
+        return nil;
+    }
+    return indexPath;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(dropDownMenu:shouldDeselectRowAtIndexPath:)]) {
+        NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
+        if ([self.delegate dropDownMenu:self shouldDeselectRowAtIndexPath:_indexPath]) {
             return indexPath;
         }
         return nil;
@@ -664,9 +676,9 @@
     return [self.menuTableView dequeueReusableCellWithIdentifier:identifier];
 }
 
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+- (void)selectRowAtIndex:(NSInteger)index animated:(BOOL)animated
 {
-    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
 
     // 选中指定行，注意这里指定 UITableViewScrollPositionNone 会导致没有滚动而不是最小滚动，详见文档
     [self.menuTableView selectRowAtIndexPath:indexPath
@@ -679,9 +691,9 @@
                                       animated:animated];
 }
 
-- (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated
+- (void)deselectRowAtIndex:(NSInteger)index animated:(BOOL)animated
 {
-    indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.menuTableView deselectRowAtIndexPath:indexPath animated:animated];
 }
 

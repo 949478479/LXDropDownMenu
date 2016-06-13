@@ -20,4 +20,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)search:(id)sender
+{
+    !self.didTapSearchButton ?: self.didTapSearchButton();
+}
+
 @end

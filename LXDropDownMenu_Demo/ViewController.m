@@ -98,7 +98,11 @@
 
     if (indexPath.section == 3) {
         if (indexPath.row == 1) {
-            return [menu dequeueReusableCellWithIdentifier:@"YZScoreRangeCell"];
+            YZScoreRangeCell *cell = [menu dequeueReusableCellWithIdentifier:@"YZScoreRangeCell"];
+            [cell setDidTapSearchButton:^{
+                [menu deselectRowAtIndex:0 animated:NO];
+            }];
+            return cell;
         }
     }
 
@@ -150,7 +154,9 @@
 
 - (void)dropDownMenu:(LXDropDownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%@", self.itemTitles[indexPath.section][indexPath.row]);
+    if (indexPath.section < 3) {
+        NSLog(@"%@", self.itemTitles[indexPath.section][indexPath.row]);
+    }
 
     self.selectedItemsRecord[@(indexPath.section)] = indexPath;
 
@@ -159,12 +165,20 @@
 
 - (void)dropDownMenu:(LXDropDownMenu *)menu willOpenMenuInSection:(NSInteger)section
 {
-    [menu selectRowAtIndexPath:self.selectedItemsRecord[@(section)] animated:NO];
+    [menu selectRowAtIndex:[self.selectedItemsRecord[@(section)] row] animated:NO];
 }
 
 - (void)dropDownMenu:(LXDropDownMenu *)menu didCloseMenuInSection:(NSInteger)section
 {
     NSLog(@"%@", self.sectionTitles[section]);
+}
+
+- (BOOL)dropDownMenu:(LXDropDownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 3 && indexPath.row == 1) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

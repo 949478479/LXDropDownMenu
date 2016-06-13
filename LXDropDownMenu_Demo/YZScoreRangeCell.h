@@ -10,4 +10,6 @@
 
 @interface YZScoreRangeCell : UITableViewCell
 
+@property (nonatomic) void (^didTapSearchButton)(void);
+
 @end
