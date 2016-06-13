@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  LXDropDownMenu_Demo
+//  LXDropdownMenu_Demo
 //
 //  Created by 从今以后 on 16/2/20.
 //  Copyright © 2016年 从今以后. All rights reserved.
@@ -8,14 +8,14 @@
 
 #import "LXUtilities.h"
 #import "ViewController.h"
-#import "LXDropDownMenu.h"
+#import "LXDropdownMenu.h"
 #import "YZScoreRangeCell.h"
 
-@interface ViewController () <LXDropDownMenuDelegate, LXDropDownMenuDataSource>
+@interface ViewController () <LXDropdownMenuDelegate, LXDropdownMenuDataSource>
 
 @property (nonatomic) NSArray<NSString *> *sectionTitles;
 @property (nonatomic) NSArray<NSArray<NSString *> *> *itemTitles;
-@property (weak, nonatomic) IBOutlet LXDropDownMenu *dropDownMenu;
+@property (weak, nonatomic) IBOutlet LXDropdownMenu *dropDownMenu;
 @property (nonatomic) NSMutableDictionary *selectedItemsRecord;
 
 @end
@@ -72,14 +72,14 @@
     [self.dropDownMenu openMenuInSection:0];
 }
 
-#pragma mark - <LXDropDownMenuDataSource>
+#pragma mark - <LXDropdownMenuDataSource>
 
-- (NSInteger)numberOfSectionsInDropDownMenu:(LXDropDownMenu *)menu
+- (NSInteger)numberOfSectionsInDropdownMenu:(LXDropdownMenu *)menu
 {
     return 4;
 }
 
-- (NSInteger)dropDownMenu:(LXDropDownMenu *)menu numberOfRowsInSection:(NSInteger)section
+- (NSInteger)dropDownMenu:(LXDropdownMenu *)menu numberOfRowsInSection:(NSInteger)section
 {
     if (section < 3) {
         return self.itemTitles[section].count;
@@ -87,12 +87,12 @@
     return 2;
 }
 
-- (NSArray<NSString *> *)sectionTitlesForDropDownMenu:(LXDropDownMenu *)menu
+- (NSArray<NSString *> *)sectionTitlesForDropdownMenu:(LXDropdownMenu *)menu
 {
     return self.sectionTitles;
 }
 
-- (UITableViewCell *)dropDownMenu:(LXDropDownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)dropDownMenu:(LXDropdownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *const reuseIdentifier = @"UITableViewCell";
 
@@ -128,7 +128,7 @@
     return cell;
 }
 
-- (CGFloat)dropDownMenu:(LXDropDownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -139,7 +139,7 @@
     return 44.0;
 }
 
-- (CGFloat)dropDownMenu:(LXDropDownMenu *)menu heightForMenuInSection:(NSInteger)section
+- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForMenuInSection:(NSInteger)section
 {
     switch (section) {
         case 0: return 44 * 10;
@@ -150,10 +150,12 @@
     return 233;
 }
 
-#pragma mark - <LXDropDownMenuDelegate>
+#pragma mark - <LXDropdownMenuDelegate>
 
-- (void)dropDownMenu:(LXDropDownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)dropDownMenu:(LXDropdownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"didSelectRowAtIndexPath - section:%@, row:%@, currentSection:%@", @(indexPath.section), @(indexPath.row), @(menu.currentSection));
+
     if (indexPath.section < 3) {
         NSLog(@"%@", self.itemTitles[indexPath.section][indexPath.row]);
     }
@@ -163,17 +165,31 @@
     [menu closeMenu];
 }
 
-- (void)dropDownMenu:(LXDropDownMenu *)menu willOpenMenuInSection:(NSInteger)section
+- (void)dropDownMenu:(LXDropdownMenu *)menu willOpenMenuInSection:(NSInteger)section
 {
+    NSLog(@"willOpenMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
+
     [menu selectRowAtIndex:[self.selectedItemsRecord[@(section)] row] animated:NO];
 }
 
-- (void)dropDownMenu:(LXDropDownMenu *)menu didCloseMenuInSection:(NSInteger)section
+- (void)dropDownMenu:(LXDropdownMenu *)menu didOpenMenuInSection:(NSInteger)section
 {
-    NSLog(@"%@", self.sectionTitles[section]);
+    NSLog(@"didOpenMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
 }
 
-- (BOOL)dropDownMenu:(LXDropDownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)dropDownMenu:(LXDropdownMenu *)menu willCloseMenuInSection:(NSInteger)section
+{
+    NSLog(@"willCloseMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
+}
+
+- (void)dropDownMenu:(LXDropdownMenu *)menu didCloseMenuInSection:(NSInteger)section
+{
+    NSLog(@"didCloseMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
+
+//    NSLog(@"%@", self.sectionTitles[section]);
+}
+
+- (BOOL)dropDownMenu:(LXDropdownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3 && indexPath.row == 1) {
         return NO;

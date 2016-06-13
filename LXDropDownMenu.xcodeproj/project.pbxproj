@@ -15,7 +15,7 @@
 		2DF2B8341C7842C100F19FC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8321C7842C100F19FC6 /* Main.storyboard */; };
 		2DF2B8361C7842C100F19FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8351C7842C100F19FC6 /* Assets.xcassets */; };
 		2DF2B8391C7842C100F19FC6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8371C7842C100F19FC6 /* LaunchScreen.storyboard */; };
-		2DF2B84C1C78431E00F19FC6 /* LXDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */; };
+		2DF2B84C1C78431E00F19FC6 /* LXDropdownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8421C78431E00F19FC6 /* LXDropdownMenu.m */; };
 		2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */; };
 		2DF2B8BB1C78463600F19FC6 /* NSObject+LXIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8601C78463600F19FC6 /* NSObject+LXIntrospection.m */; };
 		2DF2B8BC1C78463600F19FC6 /* NSArray+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8621C78463600F19FC6 /* NSArray+LXExtension.m */; };
@@ -78,8 +78,8 @@
 		2DF2B8351C7842C100F19FC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DF2B8381C7842C100F19FC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DF2B83A1C7842C100F19FC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2DF2B8411C78431E00F19FC6 /* LXDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDropDownMenu.h; sourceTree = "<group>"; };
-		2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDropDownMenu.m; sourceTree = "<group>"; };
+		2DF2B8411C78431E00F19FC6 /* LXDropdownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDropdownMenu.h; sourceTree = "<group>"; };
+		2DF2B8421C78431E00F19FC6 /* LXDropdownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDropdownMenu.m; sourceTree = "<group>"; };
 		2DF2B85C1C78463600F19FC6 /* GCD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GCD+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B85D1C78463600F19FC6 /* GCD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GCD+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B85F1C78463600F19FC6 /* NSObject+LXIntrospection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LXIntrospection.h"; sourceTree = "<group>"; };
@@ -230,8 +230,8 @@
 		2DF2B8401C78431E00F19FC6 /* LXDropDownMenu */ = {
 			isa = PBXGroup;
 			children = (
-				2DF2B8411C78431E00F19FC6 /* LXDropDownMenu.h */,
-				2DF2B8421C78431E00F19FC6 /* LXDropDownMenu.m */,
+				2DF2B8411C78431E00F19FC6 /* LXDropdownMenu.h */,
+				2DF2B8421C78431E00F19FC6 /* LXDropdownMenu.m */,
 			);
 			path = LXDropDownMenu;
 			sourceTree = "<group>";
@@ -478,7 +478,7 @@
 				2DF2B8E41C78463600F19FC6 /* LXTimer.m in Sources */,
 				2DF2B8DA1C78463600F19FC6 /* UITextView+LXExtension.m in Sources */,
 				2DF2B8CC1C78463600F19FC6 /* CALayer+LXExtension.swift in Sources */,
-				2DF2B84C1C78431E00F19FC6 /* LXDropDownMenu.m in Sources */,
+				2DF2B84C1C78431E00F19FC6 /* LXDropdownMenu.m in Sources */,
 				2DF2B8C91C78463600F19FC6 /* CALayer+LXExtension.m in Sources */,
 				2DF2B8D91C78463600F19FC6 /* UITextField+LXExtension.m in Sources */,
 				2DF2B8C11C78463600F19FC6 /* NSFileManager+LXExtension.m in Sources */,
