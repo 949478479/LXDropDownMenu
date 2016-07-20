@@ -477,7 +477,7 @@ label:
     [self.wrapperView layoutIfNeeded];
 
     self.tableViewHeightConstraint.constant =
-    [self.dataSource dropDownMenu:self heightForMenuInSection:self.targetSection];
+    [self.dataSource dropdownMenu:self heightForMenuInSection:self.targetSection];
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 
@@ -494,22 +494,22 @@ label:
         self.isOpen = YES;
         self.currentSection = self.targetSection;
 
-        if ([self.delegate respondsToSelector:@selector(dropDownMenu:didOpenMenuInSection:)]) {
-            [self.delegate dropDownMenu:self didOpenMenuInSection:self.targetSection];
+        if ([self.delegate respondsToSelector:@selector(dropdownMenu:didOpenMenuInSection:)]) {
+            [self.delegate dropdownMenu:self didOpenMenuInSection:self.targetSection];
         }
     }];
 
     [self.tableView reloadData];
 
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:willOpenMenuInSection:)]) {
-        [self.delegate dropDownMenu:self willOpenMenuInSection:self.targetSection];
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:willOpenMenuInSection:)]) {
+        [self.delegate dropdownMenu:self willOpenMenuInSection:self.targetSection];
     }
 }
 
 - (void)closeMenuView
 {
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:willCloseMenuInSection:)]) {
-        [self.delegate dropDownMenu:self willCloseMenuInSection:self.targetSection];
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:willCloseMenuInSection:)]) {
+        [self.delegate dropdownMenu:self willCloseMenuInSection:self.targetSection];
     }
 
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
@@ -528,8 +528,8 @@ label:
         self.wrapperView.hidden = YES;
         self.currentSection = NSNotFound;
 
-        if ([self.delegate respondsToSelector:@selector(dropDownMenu:didCloseMenuInSection:)]) {
-            [self.delegate dropDownMenu:self didCloseMenuInSection:self.targetSection];
+        if ([self.delegate respondsToSelector:@selector(dropdownMenu:didCloseMenuInSection:)]) {
+            [self.delegate dropdownMenu:self didCloseMenuInSection:self.targetSection];
         }
     }];
 }
@@ -537,12 +537,12 @@ label:
 - (void)refreshMenuView
 {
     self.tableViewHeightConstraint.constant =
-    [self.dataSource dropDownMenu:self heightForMenuInSection:self.targetSection];
+    [self.dataSource dropdownMenu:self heightForMenuInSection:self.targetSection];
 
     [self.tableView reloadData];
 
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:willOpenMenuInSection:)]) {
-        [self.delegate dropDownMenu:self willOpenMenuInSection:self.targetSection];
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:willOpenMenuInSection:)]) {
+        [self.delegate dropdownMenu:self willOpenMenuInSection:self.targetSection];
     }
 
     self.currentSection = self.targetSection;
@@ -556,26 +556,26 @@ label:
     if (self.targetSection == NSNotFound) {
         return 0;
     }
-    return [self.dataSource dropDownMenu:self numberOfRowsInSection:self.targetSection];
+    return [self.dataSource dropdownMenu:self numberOfRowsInSection:self.targetSection];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.targetSection];
-    return [self.dataSource dropDownMenu:self cellForRowAtIndexPath:indexPath];
+    return [self.dataSource dropdownMenu:self cellForRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.targetSection];
-    return [self.dataSource dropDownMenu:self heightForRowAtIndexPath:indexPath];
+    return [self.dataSource dropdownMenu:self heightForRowAtIndexPath:indexPath];
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:shouldSelectRowAtIndexPath:)]) {
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:shouldSelectRowAtIndexPath:)]) {
         NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
-        if ([self.delegate dropDownMenu:self shouldSelectRowAtIndexPath:_indexPath]) {
+        if ([self.delegate dropdownMenu:self shouldSelectRowAtIndexPath:_indexPath]) {
             return indexPath;
         }
         return nil;
@@ -585,9 +585,9 @@ label:
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:shouldDeselectRowAtIndexPath:)]) {
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:shouldDeselectRowAtIndexPath:)]) {
         NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
-        if ([self.delegate dropDownMenu:self shouldDeselectRowAtIndexPath:_indexPath]) {
+        if ([self.delegate dropdownMenu:self shouldDeselectRowAtIndexPath:_indexPath]) {
             return indexPath;
         }
         return nil;
@@ -597,17 +597,17 @@ label:
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:didSelectRowAtIndexPath:)]) {
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:didSelectRowAtIndexPath:)]) {
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
-        [self.delegate dropDownMenu:self didSelectRowAtIndexPath:indexPath];
+        [self.delegate dropdownMenu:self didSelectRowAtIndexPath:indexPath];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.delegate respondsToSelector:@selector(dropDownMenu:didDeselectRowAtIndexPath:)]) {
+    if ([self.delegate respondsToSelector:@selector(dropdownMenu:didDeselectRowAtIndexPath:)]) {
         indexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.currentSection];
-        [self.delegate dropDownMenu:self didDeselectRowAtIndexPath:indexPath];
+        [self.delegate dropdownMenu:self didDeselectRowAtIndexPath:indexPath];
     }
 }
 

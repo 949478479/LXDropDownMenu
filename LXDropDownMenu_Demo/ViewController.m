@@ -79,7 +79,7 @@
     return 4;
 }
 
-- (NSInteger)dropDownMenu:(LXDropdownMenu *)menu numberOfRowsInSection:(NSInteger)section
+- (NSInteger)dropdownMenu:(LXDropdownMenu *)menu numberOfRowsInSection:(NSInteger)section
 {
     if (section < 3) {
         return self.itemTitles[section].count;
@@ -92,7 +92,7 @@
     return self.sectionTitles;
 }
 
-- (UITableViewCell *)dropDownMenu:(LXDropdownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)dropdownMenu:(LXDropdownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *const reuseIdentifier = @"UITableViewCell";
 
@@ -111,13 +111,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:reuseIdentifier];
-        cell.selectedBackgroundView = [UIView new];
+//        cell.selectedBackgroundView = [UIView new];
     }
 
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0];
     cell.textLabel.textColor = [UIColor lightGrayColor];
     cell.textLabel.highlightedTextColor = [UIColor orangeColor];
-    cell.selectedBackgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    cell.selectedBackgroundView.backgroundColor = [UIColor groupTableViewBackgroundColor];
 
     if (indexPath.section == 3 && indexPath.row == 0) {
         cell.textLabel.text = @"全部";
@@ -128,7 +128,7 @@
     return cell;
 }
 
-- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)dropdownMenu:(LXDropdownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -139,7 +139,7 @@
     return 44.0;
 }
 
-- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForMenuInSection:(NSInteger)section
+- (CGFloat)dropdownMenu:(LXDropdownMenu *)menu heightForMenuInSection:(NSInteger)section
 {
     switch (section) {
         case 0: return 44 * 10;
@@ -152,7 +152,7 @@
 
 #pragma mark - <LXDropdownMenuDelegate>
 
-- (void)dropDownMenu:(LXDropdownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)dropdownMenu:(LXDropdownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"didSelectRowAtIndexPath - section:%@, row:%@, currentSection:%@", @(indexPath.section), @(indexPath.row), @(menu.currentSection));
 
@@ -165,31 +165,31 @@
     [menu closeMenu];
 }
 
-- (void)dropDownMenu:(LXDropdownMenu *)menu willOpenMenuInSection:(NSInteger)section
+- (void)dropdownMenu:(LXDropdownMenu *)menu willOpenMenuInSection:(NSInteger)section
 {
     NSLog(@"willOpenMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
 
     [menu selectRowAtIndex:[self.selectedItemsRecord[@(section)] row] animated:NO];
 }
 
-- (void)dropDownMenu:(LXDropdownMenu *)menu didOpenMenuInSection:(NSInteger)section
+- (void)dropdownMenu:(LXDropdownMenu *)menu didOpenMenuInSection:(NSInteger)section
 {
     NSLog(@"didOpenMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
 }
 
-- (void)dropDownMenu:(LXDropdownMenu *)menu willCloseMenuInSection:(NSInteger)section
+- (void)dropdownMenu:(LXDropdownMenu *)menu willCloseMenuInSection:(NSInteger)section
 {
     NSLog(@"willCloseMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
 }
 
-- (void)dropDownMenu:(LXDropdownMenu *)menu didCloseMenuInSection:(NSInteger)section
+- (void)dropdownMenu:(LXDropdownMenu *)menu didCloseMenuInSection:(NSInteger)section
 {
     NSLog(@"didCloseMenuInSection - section:%@, currentSection:%@", @(section), @(menu.currentSection));
 
 //    NSLog(@"%@", self.sectionTitles[section]);
 }
 
-- (BOOL)dropDownMenu:(LXDropdownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (BOOL)dropdownMenu:(LXDropdownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 3 && indexPath.row == 1) {
         return NO;

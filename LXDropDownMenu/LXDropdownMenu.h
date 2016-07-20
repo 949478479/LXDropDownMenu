@@ -17,16 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> *)sectionTitlesForDropdownMenu:(LXDropdownMenu *)menu;
 
 /// 返回相应菜单分组中的单元格数量
-- (NSInteger)dropDownMenu:(LXDropdownMenu *)menu numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)dropdownMenu:(LXDropdownMenu *)menu numberOfRowsInSection:(NSInteger)section;
 
 /// 返回相应菜单分组中相应行的单元格
-- (UITableViewCell *)dropDownMenu:(LXDropdownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)dropdownMenu:(LXDropdownMenu *)menu cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /// 返回相应菜单分组的菜单高度
-- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForMenuInSection:(NSInteger)section;
+- (CGFloat)dropdownMenu:(LXDropdownMenu *)menu heightForMenuInSection:(NSInteger)section;
 
 /// 返回相应菜单分组中相应行的行高
-- (CGFloat)dropDownMenu:(LXDropdownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (CGFloat)dropdownMenu:(LXDropdownMenu *)menu heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -34,21 +34,21 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /// 即将打开（切换）菜单分组，可在此方法中选中指定行，在此方法中更换数据源内容没有效果
-- (void)dropDownMenu:(LXDropdownMenu *)menu willOpenMenuInSection:(NSInteger)section;
+- (void)dropdownMenu:(LXDropdownMenu *)menu willOpenMenuInSection:(NSInteger)section;
 /// 已经打开菜单分组，只是切换菜单分组时不会调用此方法
-- (void)dropDownMenu:(LXDropdownMenu *)menu didOpenMenuInSection:(NSInteger)section;
+- (void)dropdownMenu:(LXDropdownMenu *)menu didOpenMenuInSection:(NSInteger)section;
 /// 即将关闭菜单分组
-- (void)dropDownMenu:(LXDropdownMenu *)menu willCloseMenuInSection:(NSInteger)section;
+- (void)dropdownMenu:(LXDropdownMenu *)menu willCloseMenuInSection:(NSInteger)section;
 /// 已经关闭菜单分组
-- (void)dropDownMenu:(LXDropdownMenu *)menu didCloseMenuInSection:(NSInteger)section;
+- (void)dropdownMenu:(LXDropdownMenu *)menu didCloseMenuInSection:(NSInteger)section;
 /// 是否可以选中指定行
-- (BOOL)dropDownMenu:(LXDropdownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)dropdownMenu:(LXDropdownMenu *)menu shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 /// 已经选中指定行，适用于当前展开的菜单分组
-- (void)dropDownMenu:(LXDropdownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)dropdownMenu:(LXDropdownMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 /// 是否可以选中指定行
-- (BOOL)dropDownMenu:(LXDropdownMenu *)menu shouldDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)dropdownMenu:(LXDropdownMenu *)menu shouldDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 /// 已经取消选中指定行，适用于当前展开的菜单分组
-- (void)dropDownMenu:(LXDropdownMenu *)menu didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)dropdownMenu:(LXDropdownMenu *)menu didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
