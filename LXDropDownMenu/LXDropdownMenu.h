@@ -60,18 +60,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 菜单栏按钮文本字体，默认为 17.0 系统字体
 @property (nonatomic) UIFont *barButtonTextFont;
 /// 菜单栏按钮标题和图片在普通状态下的颜色，默认为黑色
-@property (nonatomic) IBInspectable UIColor *normalColor;
+@property (nonatomic) IBInspectable UIColor *barButtonNormalColor;
 /// 菜单栏按钮标题和图片在选中状态下的颜色，默认使用 tintColor
-@property (nonatomic) IBInspectable UIColor *selectedColor;
+@property (nonatomic) IBInspectable UIColor *barButtonSelectedColor;
 /// 菜单栏分隔线颜色，默认为 alpha 为 0.1 的黑色
-@property (nonatomic) IBInspectable UIColor *separatorColor;
+@property (nonatomic) IBInspectable UIColor *barSeparatorColor;
 
-/// 是否隐藏菜单表视图的分隔线，默认不隐藏
-@property (nonatomic) IBInspectable BOOL hiddenSeparator;
+/// 菜单表视图
+@property (nonatomic, readonly) UITableView *tableView;
 /// 背景蒙版颜色，默认为 alpha 为 0.5 的黑色
 @property (nonatomic) IBInspectable UIColor *dimmingColor;
-/// 菜单背景色，默认为白色
-@property (nonatomic) IBInspectable UIColor *tableViewBgColor;
 
 /// 菜单是否打开
 @property (nonatomic, readonly) BOOL isOpen;

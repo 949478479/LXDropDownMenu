@@ -26,6 +26,21 @@
 @interface _LXDropdownMenuTableView : UITableView
 @end
 @implementation _LXDropdownMenuTableView
+
+- (void)setDelegate:(id<UITableViewDelegate>)delegate
+{
+    if ([delegate isKindOfClass:[LXDropdownMenu class]]) {
+        [super setDelegate:delegate];
+    }
+}
+
+- (void)setDataSource:(id<UITableViewDataSource>)dataSource
+{
+    if ([dataSource isKindOfClass:[LXDropdownMenu class]]) {
+        [super setDataSource:dataSource];
+    }
+}
+
 @end
 
 @interface _LXDropdownMenuBarButton : UIButton
@@ -132,12 +147,11 @@
     _animationDuration = 0.25;
     _targetSection = NSNotFound;
     _currentSection = NSNotFound;
-    _selectedColor = self.tintColor;
-    _normalColor = [UIColor blackColor];
-    _tableViewBgColor = [UIColor whiteColor];
+    _barButtonSelectedColor = self.tintColor;
+    _barButtonNormalColor = [UIColor blackColor];
     _barButtonTextFont = [UIFont systemFontOfSize:17.0];
     _dimmingColor = [UIColor colorWithWhite:0.0 alpha:0.5];
-    _separatorColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+    _barSeparatorColor = [UIColor colorWithWhite:0.0 alpha:0.1];
 }
 
 #pragma mark - 安装菜单栏和菜单
@@ -180,13 +194,13 @@
         _LXDropdownMenuBarButton *barButton = [_LXDropdownMenuBarButton new];
         {
             barButton.tag = i;
-            barButton.tintColor = self.normalColor;
+            barButton.tintColor = self.barButtonNormalColor;
             barButton.titleLabel.font = self.barButtonTextFont;
             barButton.lx_normalImage = normalImage;
             barButton.lx_normalTitle = barButtonTitles[i];
-            barButton.lx_normalTitleColor = self.normalColor;
+            barButton.lx_normalTitleColor = self.barButtonNormalColor;
             barButton.lx_selectedImage = selectedImage;
-            barButton.lx_selectedTitleColor = self.selectedColor;
+            barButton.lx_selectedTitleColor = self.barButtonSelectedColor;
             [barButton addTarget:self
                           action:@selector(barButtonDidTap:)
                 forControlEvents:UIControlEventTouchUpInside];
@@ -254,7 +268,7 @@
 
             _LXDropdownMenuBarSeparatorView *separatorView = [_LXDropdownMenuBarSeparatorView new];
             separatorView.translatesAutoresizingMaskIntoConstraints = NO;
-            separatorView.backgroundColor = self.separatorColor;
+            separatorView.backgroundColor = self.barSeparatorColor;
             [separatorViews addObject:separatorView];
             [self addSubview:separatorView];
 
@@ -290,7 +304,7 @@ label:
         // 添加菜单栏底部分隔线
         _LXDropdownMenuBarSeparatorView *separatorView = [_LXDropdownMenuBarSeparatorView new];
         separatorView.translatesAutoresizingMaskIntoConstraints = NO;
-        separatorView.backgroundColor = self.separatorColor;
+        separatorView.backgroundColor = self.barSeparatorColor;
         [self addSubview:separatorView];
 
         NSMutableArray *separatorViews = [NSMutableArray arrayWithArray:self.barSeparatorViews];
@@ -317,8 +331,6 @@ label:
         _tableView = [_LXDropdownMenuTableView new];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = self.tableViewBgColor;
-        _tableView.separatorStyle = self.hiddenSeparator ? 0 : 1;
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, CGFLOAT_MIN)];
     }
@@ -391,28 +403,28 @@ label:
     [self.barButtons setValue:barButtonTextFont forKeyPath:@"titleLabel.font"];
 }
 
-- (void)setNormalColor:(UIColor *)normalColor
+- (void)setBarButtonNormalColor:(UIColor *)barButtonNormalColor
 {
-    _normalColor = normalColor;
+    _barButtonNormalColor = barButtonNormalColor;
 
     for (UIButton *button in self.barButtons) {
-        button.lx_normalTitleColor = normalColor;
-        button.tintColor = normalColor; // 通过 tintColor 来改变菜单栏按钮图片颜色
+        button.lx_normalTitleColor = barButtonNormalColor;
+        button.tintColor = barButtonNormalColor; // 通过 tintColor 来改变菜单栏按钮图片颜色
     }
 }
 
-- (void)setSelectedColor:(UIColor *)selectedColor
+- (void)setBarButtonSelectedColor:(UIColor *)barButtonSelectedColor
 {
-    _selectedColor = selectedColor;
+    _barButtonSelectedColor = barButtonSelectedColor;
 
-    [self.barButtons setValue:selectedColor forKey:@"lx_selectedTitleColor"];
+    [self.barButtons setValue:barButtonSelectedColor forKey:@"lx_selectedTitleColor"];
 }
 
-- (void)setSeparatorColor:(UIColor *)separatorColor
+- (void)setBarSeparatorColor:(UIColor *)barSeparatorColor
 {
-    _separatorColor = separatorColor;
+    _barSeparatorColor = barSeparatorColor;
 
-    [self.barSeparatorViews setValue:separatorColor forKey:@"backgroundColor"];
+    [self.barSeparatorViews setValue:barSeparatorColor forKey:@"backgroundColor"];
 }
 
 - (void)setDimmingColor:(UIColor *)dimmingColor
@@ -422,34 +434,20 @@ label:
     self.dimmingView.backgroundColor = dimmingColor;
 }
 
-- (void)setTableViewBgColor:(UIColor *)tableViewBgColor
-{
-    _tableViewBgColor = tableViewBgColor;
-
-    _tableView.backgroundColor = tableViewBgColor;
-}
-
-- (void)setHiddenSeparator:(BOOL)hiddenSeparator
-{
-    _hiddenSeparator = hiddenSeparator;
-
-    _tableView.separatorStyle = hiddenSeparator ? 0 : 1;
-}
-
 #pragma mark - 点击事件处理
 
 - (void)barButtonDidTap:(UIButton *)selectedBtn
 {
     if (self.selectedButton == selectedBtn) { // 点击当前已打开的菜单，此时应关闭菜单
         selectedBtn.selected = NO;
-        selectedBtn.tintColor = self.normalColor;
+        selectedBtn.tintColor = self.barButtonNormalColor;
         self.selectedButton = nil;
         self.targetSection = self.currentSection;
     } else { // 点击新菜单，包括切换菜单的情况
         selectedBtn.selected = YES;
-        selectedBtn.tintColor = self.selectedColor;
+        selectedBtn.tintColor = self.barButtonSelectedColor;
         self.selectedButton.selected = NO;
-        self.selectedButton.tintColor = self.normalColor;
+        self.selectedButton.tintColor = self.barButtonNormalColor;
         self.selectedButton = selectedBtn;
         self.targetSection = selectedBtn.tag;
     }
