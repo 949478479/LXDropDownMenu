@@ -655,7 +655,19 @@ label:
 
 - (void)closeMenu
 {
-    [self handleMenuDimmingViewDidTap];
+    if (self.isOpen) {
+        [self handleMenuDimmingViewDidTap];
+    }
+}
+
+- (void)closeMenuWithoutAnimation
+{
+    if (self.isOpen) {
+        NSTimeInterval duration = self.animationDuration;
+        self.animationDuration = 0;
+        [self handleMenuDimmingViewDidTap];
+        self.animationDuration = duration;
+    }
 }
 
 @end

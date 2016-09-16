@@ -102,6 +102,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 关闭当前打开的菜单分组，会触发相关代理方法
 - (void)closeMenu;
 
+- (void)closeMenuWithoutAnimation;
+
 @end
 
 NS_ASSUME_NONNULL_END
