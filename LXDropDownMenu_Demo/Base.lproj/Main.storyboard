@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iUp-Xr-OXS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iUp-Xr-OXS">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Data Source-->
@@ -17,16 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCr-2O-L0J">
-                                <rect key="frame" x="216" y="360" width="60" height="30"/>
-                                <state key="normal" title="打开菜单"/>
-                                <connections>
-                                    <action selector="openMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="28H-y1-sgx"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3C-q3-dOY" customClass="LXDropdownMenu">
                                 <rect key="frame" x="0.0" y="64" width="320" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="QBp-Xl-LhG"/>
                                 </constraints>
@@ -35,13 +32,13 @@
                                         <real key="value" value="0.40000000000000002"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="normalColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="selectedColor">
-                                        <color key="value" red="0.94117647059999998" green="0.29411764709999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.94117647059999998" green="0.29411764709999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="separatorColor">
-                                        <color key="value" white="0.0" alpha="0.050000000000000003" colorSpace="calibratedWhite"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -49,11 +46,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="KFr-lc-auj"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCr-2O-L0J">
+                                <rect key="frame" x="129" y="269" width="62" height="30"/>
+                                <state key="normal" title="打开菜单"/>
+                                <connections>
+                                    <action selector="openMenu:" destination="BYZ-38-t0r" eventType="touchUpInside" id="28H-y1-sgx"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="MCr-2O-L0J" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="42M-Gl-iir"/>
                             <constraint firstAttribute="trailing" secondItem="w3C-q3-dOY" secondAttribute="trailing" id="D5x-8F-xIp"/>
                             <constraint firstItem="w3C-q3-dOY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="XUb-NN-td8"/>
+                            <constraint firstItem="MCr-2O-L0J" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oXr-9u-Au1"/>
                             <constraint firstItem="w3C-q3-dOY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qZg-2p-YKA"/>
                         </constraints>
                     </view>
@@ -70,7 +76,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1565" y="387"/>
+            <point key="canvasLocation" x="1601" y="387"/>
         </scene>
         <!--Item-->
         <scene sceneID="d7N-LJ-J7m">
@@ -83,23 +89,22 @@
                     <view key="view" contentMode="scaleToFill" id="pmk-kl-tHM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="jRj-QF-BLl"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hi7-lb-0VQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="1088"/>
+            <point key="canvasLocation" x="656" y="1170"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hJk-0H-fPw">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="iUp-Xr-OXS" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="slv-gh-Wxn">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="hnu-hf-LfJ" kind="relationship" relationship="viewControllers" id="WFw-TE-pUR"/>
@@ -108,7 +113,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vec-cq-JBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="707" y="723"/>
+            <point key="canvasLocation" x="116" y="387"/>
         </scene>
         <!--Item-->
         <scene sceneID="dIa-v2-mkT">
@@ -127,7 +132,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xG4-Ds-rC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="387"/>
+            <point key="canvasLocation" x="842" y="387"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="oyn-qx-ozM">
@@ -140,13 +145,7 @@
                     <view key="view" contentMode="scaleToFill" id="eAm-ug-fLr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-8r-Lfp">
-                                <rect key="frame" x="223" y="360" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="SgW-3n-JBk">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="8Ya-gc-U8H"/>
@@ -154,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DdM-hT-ybn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2010" y="387"/>
+            <point key="canvasLocation" x="2334" y="387"/>
         </scene>
     </scenes>
 </document>

@@ -77,13 +77,6 @@
     return imageRect;
 }
 
-- (void)setTitle:(NSString *)title forState:(UIControlState)state
-{
-    [super setTitle:title forState:state];
-
-    [self sizeToFit]; // 设置完 title 后调整尺寸
-}
-
 - (void)setHighlighted:(BOOL)highlighted
 {
     // 去除高亮效果

@@ -28,17 +28,9 @@
 		2DF2B8C31C78463600F19FC6 /* NSNotificationCenter+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8701C78463600F19FC6 /* NSNotificationCenter+LXExtension.m */; };
 		2DF2B8C41C78463600F19FC6 /* NSObject+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8721C78463600F19FC6 /* NSObject+LXExtension.m */; };
 		2DF2B8C51C78463600F19FC6 /* NSString+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8741C78463600F19FC6 /* NSString+LXExtension.m */; };
-		2DF2B8C61C78463600F19FC6 /* GCD+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8761C78463600F19FC6 /* GCD+LXExtension.swift */; };
 		2DF2B8C81C78463600F19FC6 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B87A1C78463600F19FC6 /* MBProgressHUD.bundle */; };
 		2DF2B8C91C78463600F19FC6 /* CALayer+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B87D1C78463600F19FC6 /* CALayer+LXExtension.m */; };
 		2DF2B8CA1C78463600F19FC6 /* CATransaction+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B87F1C78463600F19FC6 /* CATransaction+LXExtension.m */; };
-		2DF2B8CB1C78463600F19FC6 /* CAAnimation+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8841C78463600F19FC6 /* CAAnimation+LXExtension.swift */; };
-		2DF2B8CC1C78463600F19FC6 /* CALayer+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8851C78463600F19FC6 /* CALayer+LXExtension.swift */; };
-		2DF2B8CD1C78463600F19FC6 /* CATransaction+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8861C78463600F19FC6 /* CATransaction+LXExtension.swift */; };
-		2DF2B8CE1C78463600F19FC6 /* CATransform3D+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8871C78463600F19FC6 /* CATransform3D+LXExtension.swift */; };
-		2DF2B8CF1C78463600F19FC6 /* CGAffineTransform+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8881C78463600F19FC6 /* CGAffineTransform+LXExtension.swift */; };
-		2DF2B8D01C78463600F19FC6 /* CGGeometry+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8891C78463600F19FC6 /* CGGeometry+LXExtension.swift */; };
-		2DF2B8D11C78463600F19FC6 /* UIView+LXExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B88A1C78463600F19FC6 /* UIView+LXExtension.swift */; };
 		2DF2B8D21C78463600F19FC6 /* UIApplication+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B88C1C78463600F19FC6 /* UIApplication+LXExtension.m */; };
 		2DF2B8D31C78463600F19FC6 /* UIBezierPath+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B88E1C78463600F19FC6 /* UIBezierPath+LXExtension.m */; };
 		2DF2B8D41C78463600F19FC6 /* UIButton+LXExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8901C78463600F19FC6 /* UIButton+LXExtension.m */; };
@@ -60,7 +52,6 @@
 		2DF2B8E41C78463600F19FC6 /* LXTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B21C78463600F19FC6 /* LXTimer.m */; };
 		2DF2B8E51C78463600F19FC6 /* LXWeakWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B41C78463600F19FC6 /* LXWeakWrapper.m */; };
 		2DF2B8E61C78463600F19FC6 /* LXRuntimeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */; };
-		2DF2B8E71C78463600F19FC6 /* LXUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */; };
 		2DF2B8EC1C78B31900F19FC6 /* MenuItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2DF2B8EB1C78B31900F19FC6 /* MenuItems.plist */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +95,6 @@
 		2DF2B8721C78463600F19FC6 /* NSObject+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B8731C78463600F19FC6 /* NSString+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B8741C78463600F19FC6 /* NSString+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LXExtension.m"; sourceTree = "<group>"; };
-		2DF2B8761C78463600F19FC6 /* GCD+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCD+LXExtension.swift"; sourceTree = "<group>"; };
 		2DF2B8781C78463600F19FC6 /* MBProgressHUD+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B8791C78463600F19FC6 /* MBProgressHUD+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B87A1C78463600F19FC6 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
@@ -115,13 +105,6 @@
 		2DF2B8801C78463600F19FC6 /* CGAffineTransform+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGAffineTransform+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B8811C78463600F19FC6 /* CGGeometry+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B8821C78463600F19FC6 /* MKGeometry+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKGeometry+LXExtension.h"; sourceTree = "<group>"; };
-		2DF2B8841C78463600F19FC6 /* CAAnimation+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CAAnimation+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B8851C78463600F19FC6 /* CALayer+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B8861C78463600F19FC6 /* CATransaction+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CATransaction+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B8871C78463600F19FC6 /* CATransform3D+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CATransform3D+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B8881C78463600F19FC6 /* CGAffineTransform+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B8891C78463600F19FC6 /* CGGeometry+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGGeometry+LXExtension.swift"; sourceTree = "<group>"; };
-		2DF2B88A1C78463600F19FC6 /* UIView+LXExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+LXExtension.swift"; sourceTree = "<group>"; };
 		2DF2B88B1C78463600F19FC6 /* UIApplication+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+LXExtension.h"; sourceTree = "<group>"; };
 		2DF2B88C1C78463600F19FC6 /* UIApplication+LXExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+LXExtension.m"; sourceTree = "<group>"; };
 		2DF2B88D1C78463600F19FC6 /* UIBezierPath+LXExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+LXExtension.h"; sourceTree = "<group>"; };
@@ -165,7 +148,6 @@
 		2DF2B8B41C78463600F19FC6 /* LXWeakWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXWeakWrapper.m; sourceTree = "<group>"; };
 		2DF2B8B61C78463600F19FC6 /* LXRuntimeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXRuntimeUtilities.h; sourceTree = "<group>"; };
 		2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXRuntimeUtilities.m; sourceTree = "<group>"; };
-		2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXUtilities.swift; sourceTree = "<group>"; };
 		2DF2B8B91C78463600F19FC6 /* LXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXUtilities.h; sourceTree = "<group>"; };
 		2DF2B8EB1C78B31900F19FC6 /* MenuItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MenuItems.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -283,7 +265,6 @@
 				2DF2B8721C78463600F19FC6 /* NSObject+LXExtension.m */,
 				2DF2B8731C78463600F19FC6 /* NSString+LXExtension.h */,
 				2DF2B8741C78463600F19FC6 /* NSString+LXExtension.m */,
-				2DF2B8751C78463600F19FC6 /* Swift */,
 			);
 			path = "Foundation+LXExtension";
 			sourceTree = "<group>";
@@ -295,14 +276,6 @@
 				2DF2B8601C78463600F19FC6 /* NSObject+LXIntrospection.m */,
 			);
 			path = LXIntrospection;
-			sourceTree = "<group>";
-		};
-		2DF2B8751C78463600F19FC6 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				2DF2B8761C78463600F19FC6 /* GCD+LXExtension.swift */,
-			);
-			path = Swift;
 			sourceTree = "<group>";
 		};
 		2DF2B8771C78463600F19FC6 /* MBProgressHUD+LXExtension */ = {
@@ -325,7 +298,6 @@
 				2DF2B8801C78463600F19FC6 /* CGAffineTransform+LXExtension.h */,
 				2DF2B8811C78463600F19FC6 /* CGGeometry+LXExtension.h */,
 				2DF2B8821C78463600F19FC6 /* MKGeometry+LXExtension.h */,
-				2DF2B8831C78463600F19FC6 /* Swift */,
 				2DF2B88B1C78463600F19FC6 /* UIApplication+LXExtension.h */,
 				2DF2B88C1C78463600F19FC6 /* UIApplication+LXExtension.m */,
 				2DF2B88D1C78463600F19FC6 /* UIBezierPath+LXExtension.h */,
@@ -352,20 +324,6 @@
 				2DF2B8A21C78463600F19FC6 /* UIWindow+LXExtension.m */,
 			);
 			path = "UIKit+LXExtension";
-			sourceTree = "<group>";
-		};
-		2DF2B8831C78463600F19FC6 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				2DF2B8841C78463600F19FC6 /* CAAnimation+LXExtension.swift */,
-				2DF2B8851C78463600F19FC6 /* CALayer+LXExtension.swift */,
-				2DF2B8861C78463600F19FC6 /* CATransaction+LXExtension.swift */,
-				2DF2B8871C78463600F19FC6 /* CATransform3D+LXExtension.swift */,
-				2DF2B8881C78463600F19FC6 /* CGAffineTransform+LXExtension.swift */,
-				2DF2B8891C78463600F19FC6 /* CGGeometry+LXExtension.swift */,
-				2DF2B88A1C78463600F19FC6 /* UIView+LXExtension.swift */,
-			);
-			path = Swift;
 			sourceTree = "<group>";
 		};
 		2DF2B8A31C78463600F19FC6 /* LXOther */ = {
@@ -397,7 +355,6 @@
 			children = (
 				2DF2B8B61C78463600F19FC6 /* LXRuntimeUtilities.h */,
 				2DF2B8B71C78463600F19FC6 /* LXRuntimeUtilities.m */,
-				2DF2B8B81C78463600F19FC6 /* LXUtilities.swift */,
 			);
 			path = LXUtilities;
 			sourceTree = "<group>";
@@ -428,11 +385,12 @@
 		2DF2B81E1C7842C000F19FC6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "从今以后";
 				TargetAttributes = {
 					2DF2B8251C7842C000F19FC6 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 6U2XW736FX;
 					};
 				};
 			};
@@ -477,7 +435,6 @@
 			files = (
 				2DF2B8E41C78463600F19FC6 /* LXTimer.m in Sources */,
 				2DF2B8DA1C78463600F19FC6 /* UITextView+LXExtension.m in Sources */,
-				2DF2B8CC1C78463600F19FC6 /* CALayer+LXExtension.swift in Sources */,
 				2DF2B84C1C78431E00F19FC6 /* LXDropdownMenu.m in Sources */,
 				2DF2B8C91C78463600F19FC6 /* CALayer+LXExtension.m in Sources */,
 				2DF2B8D91C78463600F19FC6 /* UITextField+LXExtension.m in Sources */,
@@ -486,7 +443,6 @@
 				2DF2B8E11C78463600F19FC6 /* LXKeyboardSpacingView.m in Sources */,
 				2DF2B8C21C78463600F19FC6 /* NSManagedObjectModel+LXExtension.m in Sources */,
 				2DF2B8DF1C78463600F19FC6 /* LXDynamicTypeManager.m in Sources */,
-				2DF2B8CB1C78463600F19FC6 /* CAAnimation+LXExtension.swift in Sources */,
 				2DF2B8E51C78463600F19FC6 /* LXWeakWrapper.m in Sources */,
 				2DF2B8C51C78463600F19FC6 /* NSString+LXExtension.m in Sources */,
 				2DF2B8E31C78463600F19FC6 /* LXMulticastDelegate.m in Sources */,
@@ -496,13 +452,9 @@
 				2DF2B8D31C78463600F19FC6 /* UIBezierPath+LXExtension.m in Sources */,
 				2DF2B8BB1C78463600F19FC6 /* NSObject+LXIntrospection.m in Sources */,
 				2DF2B8E21C78463600F19FC6 /* LXMigrationManager.m in Sources */,
-				2DF2B8CD1C78463600F19FC6 /* CATransaction+LXExtension.swift in Sources */,
 				2DF2B8D21C78463600F19FC6 /* UIApplication+LXExtension.m in Sources */,
-				2DF2B8D11C78463600F19FC6 /* UIView+LXExtension.swift in Sources */,
 				2DF2B8DE1C78463600F19FC6 /* LXCoreDataController.m in Sources */,
-				2DF2B8E71C78463600F19FC6 /* LXUtilities.swift in Sources */,
 				2DF2B8DC1C78463600F19FC6 /* UIViewController+LXExtension.m in Sources */,
-				2DF2B8CE1C78463600F19FC6 /* CATransform3D+LXExtension.swift in Sources */,
 				2DF2B8C31C78463600F19FC6 /* NSNotificationCenter+LXExtension.m in Sources */,
 				2DF2B8D51C78463600F19FC6 /* UIColor+LXExtension.m in Sources */,
 				2DF2B82E1C7842C100F19FC6 /* AppDelegate.m in Sources */,
@@ -512,12 +464,9 @@
 				2DF2B8D61C78463600F19FC6 /* UIDevice+LXExtension.m in Sources */,
 				2DF2B8D81C78463600F19FC6 /* UIScreen+LXExtension.m in Sources */,
 				2DF2B8BF1C78463600F19FC6 /* NSDate+LXExtension.m in Sources */,
-				2DF2B8C61C78463600F19FC6 /* GCD+LXExtension.swift in Sources */,
 				2DF2B82B1C7842C100F19FC6 /* main.m in Sources */,
-				2DF2B8D01C78463600F19FC6 /* CGGeometry+LXExtension.swift in Sources */,
 				2DF2B8BD1C78463600F19FC6 /* NSAttributedString+LXExtension.m in Sources */,
 				2DF2B8C41C78463600F19FC6 /* NSObject+LXExtension.m in Sources */,
-				2DF2B8CF1C78463600F19FC6 /* CGAffineTransform+LXExtension.swift in Sources */,
 				2DF2B8BA1C78463600F19FC6 /* GCD+LXExtension.m in Sources */,
 				2DF2B8DD1C78463600F19FC6 /* UIWindow+LXExtension.m in Sources */,
 				2D4664B81C9FB97100B7953A /* YZScoreRangeCell.m in Sources */,
@@ -562,8 +511,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -606,8 +557,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -626,6 +579,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -634,10 +588,11 @@
 		2DF2B83E1C7842C100F19FC6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6U2XW736FX;
 				INFOPLIST_FILE = LXDropDownMenu_Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXDropDownMenuDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hereafter.LXDropDownMenuDemo;
 				PRODUCT_NAME = LXDropDownMenu;
 			};
 			name = Debug;
@@ -645,10 +600,11 @@
 		2DF2B83F1C7842C100F19FC6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6U2XW736FX;
 				INFOPLIST_FILE = LXDropDownMenu_Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cjyh.LXDropDownMenuDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hereafter.LXDropDownMenuDemo;
 				PRODUCT_NAME = LXDropDownMenu;
 			};
 			name = Release;
