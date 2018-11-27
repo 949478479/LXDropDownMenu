@@ -58,9 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///--------------
 
 /// 获取全部类名
-NSArray<NSString *> *LXClassNameList();
+NSArray<NSString *> *LXClassNameList(void);
 /// 打印全部类名
-void LXPrintClassNameList();
+void LXPrintClassNameList(void);
 
 ///---------------------
 /// @name 格式化的协议声明
